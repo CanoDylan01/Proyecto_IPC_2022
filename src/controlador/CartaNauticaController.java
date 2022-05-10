@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package poiupv;
+package controlador;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -28,13 +28,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import poiupv.Poi;
+import modelos.Poi;
+
 
 /**
  *
  * @author jsoler
  */
-public class FXMLDocumentController implements Initializable {
+public class CartaNauticaController implements Initializable {
 
     //=======================================
     // hashmap para guardar los puntos de interes POI
