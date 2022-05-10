@@ -19,7 +19,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox stylesheets="@../resources/estilos.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.FXMLDocumentController">
+<VBox stylesheets="@../resources/estilos.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="poiupv.FXMLDocumentController">
    <children>
       <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="5.0" VBox.vgrow="NEVER">
          <children>
@@ -61,7 +61,7 @@
                      <children>
                         <ImageView pickOnBounds="true">
                            <image>
-                              <Image url="@../resources/upv.jpg" />
+                              <Image url="@../resources/carta_nautica.jpg" />
                            </image>
                         </ImageView>
                         <MenuButton fx:id="map_pin" mnemonicParsing="false" prefHeight="60.0" prefWidth="48.0" visible="false">
