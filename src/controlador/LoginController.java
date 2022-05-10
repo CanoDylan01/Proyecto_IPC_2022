@@ -57,8 +57,7 @@ public class LoginController implements Initializable {
             
             //stage.setOnCloseRequest(e -> .closeWindows());
             
-            //Stage myStage = (Stage) this.inicioSesion.getScene().getWindow();
-            //myStage.close();
+            ((Stage)btn_inisesion.getScene().getWindow()).close();
         }
         catch(Exception e) {System.out.print(e);}
     }

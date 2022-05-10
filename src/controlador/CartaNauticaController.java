@@ -15,9 +15,13 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
@@ -57,6 +61,8 @@ public class CartaNauticaController implements Initializable {
     private MenuItem pin_info;
     @FXML
     private Label posicion;
+    @FXML
+    private Button btn_volver;
 
     @FXML
     void zoomIn(ActionEvent event) {
@@ -160,6 +166,28 @@ public class CartaNauticaController implements Initializable {
         mensaje.setTitle("Acerca de");
         mensaje.setHeaderText("IPC - 2022");
         mensaje.showAndWait();
+    }
+
+    @FXML
+    private void click_volver(MouseEvent event) {
+        try 
+        {
+            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Menu.fxml"));
+            Parent root1= (Parent)fxmlLoaderMenu.load();
+            MenuController menu = (MenuController) fxmlLoaderMenu.getController();
+            Stage stage= new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Menu");
+            stage.setMinWidth(1290);
+            stage.setMinHeight(758);
+            stage.setMaxWidth(1295);
+            stage.setMaxHeight(758);
+            stage.centerOnScreen();
+            stage.show();
+                
+            ((Stage)btn_volver.getScene().getWindow()).close();
+        }
+        catch(Exception e) {System.out.print(e);}
     }
 
 }

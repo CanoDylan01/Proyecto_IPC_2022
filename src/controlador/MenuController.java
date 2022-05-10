@@ -53,10 +53,7 @@ public class MenuController implements Initializable {
             stage.centerOnScreen();
             stage.show();
             
-            //stage.setOnCloseRequest(e -> .closeWindows());
-            
-            //Stage myStage = (Stage) this.inicioSesion.getScene().getWindow();
-            //myStage.close();
+            ((Stage)btn_volver.getScene().getWindow()).close();
         }
         catch(Exception e) {System.out.print(e);}
         
@@ -79,11 +76,7 @@ public class MenuController implements Initializable {
             stage.centerOnScreen();
             stage.show();
             
-            
-            //stage.setOnCloseRequest(e -> .closeWindows());
-            
-            //Stage myStage = (Stage) this.inicioSesion.getScene().getWindow();
-            //myStage.close();
+            ((Stage)btn_practica.getScene().getWindow()).close();
         }
         catch(Exception e) {System.out.print(e);}
     }
