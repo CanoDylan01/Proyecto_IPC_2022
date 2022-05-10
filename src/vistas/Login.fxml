@@ -6,6 +6,173 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.LoginController">
-    
-</AnchorPane>
+<BorderPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.LoginController">
+   <center>
+      <Pane fx:id="loginCentro" prefHeight="605.0" prefWidth="892.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#d9d9d981" height="728.0" layoutY="-4.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="684.0" />
+            <VBox alignment="TOP_CENTER" layoutY="16.0" prefHeight="681.0" prefWidth="681.0">
+               <children>
+                  <Text stroke="RED" strokeType="OUTSIDE" text="Inicio de Sesión" textAlignment="CENTER">
+                     <font>
+                        <Font name="Book Antiqua" size="45.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="70.0" />
+                     </VBox.margin>
+                  </Text>
+                  <Label text="Usuario:">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="540.0" top="50.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="campoUsuario" onKeyPressed="#cambioCampo" prefHeight="51.0" prefWidth="551.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="20.0" right="60.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label prefHeight="47.0" prefWidth="209.0" text="Contraseña:" textAlignment="CENTER">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets right="480.0" top="20.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="25.0" />
+                     </padding>
+                  </Label>
+                  <TextField fx:id="unMaskPass" disable="true" onKeyPressed="#iniSesion" prefHeight="50.4" prefWidth="551.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="-50.0" left="20.0" right="60.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <PasswordField fx:id="campoContraseña" onKeyPressed="#iniSesion" prefHeight="50.0" prefWidth="611.0">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <VBox.margin>
+                        <Insets left="20.0" right="60.0" />
+                     </VBox.margin>
+                  </PasswordField>
+                  <ImageView fx:id="see" fitHeight="50.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <VBox.margin>
+                        <Insets left="610.0" top="-45.0" />
+                     </VBox.margin>
+                     <image>
+                        <Image url="@../imagenes/n.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="verPass" focusTraversable="false" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onMousePressed="#pulsadoVerPass" onMouseReleased="#pulsadoEsconderPass" opacity="0.0" prefHeight="50.0" prefWidth="40.0">
+                     <VBox.margin>
+                        <Insets left="610.0" top="-46.0" />
+                     </VBox.margin>
+                  </Button>
+                  <HBox prefHeight="63.0" prefWidth="681.0">
+                     <children>
+                        <Text fill="#7c7b7b" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Ha olvidado su contraseña?">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="20.0" top="5.0" />
+                           </HBox.margin>
+                        </Text>
+                        <Hyperlink fx:id="recuperar" onAction="#pulsadoRecuperar" onKeyPressed="#teclaRegistro" prefHeight="35.0" prefWidth="105.0" text="Recupérala">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Hyperlink>
+                        <Button fx:id="inicioSesion" mnemonicParsing="false" onAction="#iniciarSesion" onKeyPressed="#teclaIniciar" prefHeight="43.0" prefWidth="142.0" style="-fx-background-color: #959595;" text="Iniciar Sesión" textAlignment="CENTER" textFill="#222121">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="152.0" top="15.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Label fx:id="mensajeUsuario" prefHeight="17.0" prefWidth="207.0" textFill="RED">
+                     <VBox.margin>
+                        <Insets right="430.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane prefHeight="19.0" prefWidth="681.0">
+                     <children>
+                        <Text fill="#7c7b7b" layoutX="262.0" layoutY="13.0" strokeType="OUTSIDE" strokeWidth="0.0" text="¿Aún no tienes cuenta?">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Text>
+                        <Hyperlink fx:id="registrate" layoutX="298.0" layoutY="17.0" onAction="#pulsadoRegistro" onKeyPressed="#teclaRegistro" text="Regístrate">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Hyperlink>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+   </center>
+   <left>
+      <Pane prefHeight="184.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="loginIzquierda" fitHeight="720.0" fitWidth="304.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../imagenes/fondo_menu_claro.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="189.0" fitWidth="300.0" layoutX="5.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/Logo_Conecta4_Rojo.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="190.0" fitWidth="300.0" layoutY="484.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/Logo_Conecta4.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="invitado" layoutX="59.0" layoutY="643.0" mnemonicParsing="false" onAction="#pulsadoInvitado" text="JUGAR COMO INVITADO">
+               <font>
+                  <Font name="Gabriola" size="19.0" />
+               </font></Button>
+            <Button fx:id="btn_volverAMenu" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#volverAMenu" text="Volver al menú" visible="false" />
+         </children>
+      </Pane>
+   </left>
+   <right>
+      <Pane prefHeight="491.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="loginDerecha" fitHeight="720.0" fitWidth="304.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../imagenes/fondo_menu_claro.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </right>
+</BorderPane>
