@@ -83,12 +83,15 @@ public class LoginController implements Initializable {
                 FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Menu.fxml"));
                 Parent root1= (Parent)fxmlLoaderMenu.load();
                 MenuController menu = (MenuController) fxmlLoaderMenu.getController();
+                menu.navegacion = this.navegacion;
+                
                 
                 //navegacion.createDemoData(2);
                 //Conexión con la BD
                 //navegacion = Navegacion.getSingletonNavegacion();
                 
                 usuario = navegacion.loginUser(campoUsuario.getText(), campoPassword.getText());
+                menu.usuario = this.usuario;
                 if (usuario != null ) 
                 {
                     Stage stage= new Stage();

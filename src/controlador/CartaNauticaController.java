@@ -39,6 +39,9 @@ import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import modelos.Poi;
+import model.Navegacion;
+import model.Session;
+import model.User;
 
 
 /**
@@ -76,6 +79,12 @@ public class CartaNauticaController implements Initializable {
     public double inicioYTrans;
     public double baseX;
     public double baseY;
+    
+    public static Navegacion navegacion;
+    
+    public User usuario;
+    
+    public Session sesion;
     
     Line linePainting;
 
@@ -178,7 +187,7 @@ public class CartaNauticaController implements Initializable {
     private void acercaDe(ActionEvent event) {
         Alert mensaje= new Alert(Alert.AlertType.INFORMATION);
         mensaje.setTitle("Acerca de");
-        mensaje.setHeaderText("IPC - 2022");
+        mensaje.setHeaderText(usuario.getNickName());
         mensaje.showAndWait();
     }
 
@@ -254,6 +263,26 @@ public class CartaNauticaController implements Initializable {
             e.consume();
         });
         
+    }
+
+    @FXML
+    private void cerrarSesion(ActionEvent event) {
+        usuario = null;
+        
+        try 
+        {
+            FXMLLoader fxmlLoaderLogin= new FXMLLoader(getClass().getResource("/vistas/Login.fxml"));
+            Parent root1= (Parent)fxmlLoaderLogin.load();
+            LoginController login = (LoginController) fxmlLoaderLogin.getController();
+            Stage stage= new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Login");
+            stage.centerOnScreen();
+            stage.show();
+                
+            ((Stage)btn_volver.getScene().getWindow()).close();
+        }
+        catch(Exception e) {System.out.print(e);}
     }
 
 }

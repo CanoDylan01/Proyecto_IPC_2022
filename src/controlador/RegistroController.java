@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -125,6 +126,11 @@ public class RegistroController implements Initializable {
             return true;
         }
         return false;
+    }
+
+    @FXML
+    private void pulsadoImagen(ActionEvent event) {
+        
     }
     
 }

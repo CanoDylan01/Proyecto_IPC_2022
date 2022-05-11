@@ -7,6 +7,7 @@ package controlador;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +16,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.Navegacion;
+import model.Session;
+import model.User;
 
 /**
  * FXML Controller class
@@ -27,6 +31,14 @@ public class MenuController implements Initializable {
     private Button btn_volver;
     @FXML
     private Button btn_practica;
+    
+    public static Navegacion navegacion;
+    
+    public User usuario;
+    
+    public Session sesion;
+    @FXML
+    private Button btn_Modificar;
 
     /**
      * Initializes the controller class.
@@ -62,6 +74,37 @@ public class MenuController implements Initializable {
             FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/CartaNautica.fxml"));
             Parent root1= (Parent)fxmlLoaderMenu.load();
             CartaNauticaController cartaNautica = (CartaNauticaController) fxmlLoaderMenu.getController();
+            cartaNautica.navegacion = this.navegacion;
+            cartaNautica.usuario = this.usuario;
+            Stage stage= new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Práctica");
+            stage.setWidth(1200);
+            stage.setHeight(700);
+            stage.centerOnScreen();
+            stage.show();
+            
+            ((Stage)btn_practica.getScene().getWindow()).close();
+        }
+        catch(Exception e) {System.out.print(e);}
+    }
+
+    @FXML
+    private void modPerfil(ActionEvent event) {
+        try 
+        {
+            FXMLLoader fxmlLoaderMod= new FXMLLoader(getClass().getResource("/vistas/modPerfil.fxml"));
+            Parent root1= (Parent)fxmlLoaderMod.load();
+            ModPerfilController modPerfil = (ModPerfilController) fxmlLoaderMod.getController();
+            modPerfil.navegacion = this.navegacion;
+            modPerfil.usuario = this.usuario;
+            
+            modPerfil.campoUsuario.setText(usuario.getNickName());
+            modPerfil.campoContra1.setText(usuario.getPassword());
+            modPerfil.campoCorreo.setText(usuario.getEmail());
+            modPerfil.fechaNacimiento.setValue(usuario.getBirthdate());
+            modPerfil.avatar.setImage(usuario.getAvatar());
+            
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Práctica");

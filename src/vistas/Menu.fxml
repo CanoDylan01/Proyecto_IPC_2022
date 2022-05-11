@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="controlador.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="900.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MenuController">
     <stylesheets>
         <URL value="@/estilos/menu.css" />
     </stylesheets>
@@ -16,6 +16,11 @@
          </font>
       </Button>
       <Button fx:id="btn_practica" layoutX="658.0" layoutY="465.0" mnemonicParsing="false" onMouseClicked="#pulsadoPracticar" text="Practicar">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btn_Modificar" layoutX="411.0" layoutY="465.0" mnemonicParsing="false" onAction="#modPerfil" text="Modificar">
          <font>
             <Font size="18.0" />
          </font>
