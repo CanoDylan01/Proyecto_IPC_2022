@@ -29,7 +29,7 @@
       <Label layoutX="53.0" layoutY="261.0" text="Fecha de Nacimiento" />
       <PasswordField fx:id="campoContra2" layoutX="53.0" layoutY="218.0" />
       <Label layoutX="53.0" layoutY="200.0" text="Confirmar contraseña" />
-      <Button fx:id="btn_seleccionarImagen" layoutX="428.0" layoutY="218.0" mnemonicParsing="false" text="Seleccionar imagen" />
+      <Button fx:id="btn_seleccionarImagen" layoutX="428.0" layoutY="218.0" mnemonicParsing="false" onAction="#clickSeleccionar" text="Seleccionar imagen" />
       <Line endX="21.4000244140625" endY="273.0" layoutX="357.0" layoutY="127.0" startX="21.4000244140625" startY="-127.0" />
    </children>
 </AnchorPane>
