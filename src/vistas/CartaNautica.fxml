@@ -19,8 +19,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
 
-<VBox stylesheets="@../resources/estilos.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CartaNauticaController">
+<VBox stylesheets="@../resources/estilos.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CartaNauticaController">
    <children>
       <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="5.0" VBox.vgrow="NEVER">
          <children>
@@ -61,7 +62,7 @@
                <content>
                   <Pane>
                      <children>
-                        <ImageView onContextMenuRequested="#editarPintaLinea" onMouseDragged="#finPintaLinea" onMousePressed="#inicioPintaLinea" pickOnBounds="true">
+                        <ImageView onContextMenuRequested="#editarPintaLinea" onMouseDragged="#finPintar" onMousePressed="#inicioPintar" pickOnBounds="true">
                            <image>
                               <Image url="@../resources/carta_nautica.jpg" />
                            </image>
@@ -83,6 +84,7 @@
                               <Image url="@../resources/transportador.png" />
                            </image>
                         </ImageView>
+                        <Circle fx:id="circlePainting" fill="DODGERBLUE" layoutX="-21.0" layoutY="-21.0" radius="65.0" stroke="BLACK" strokeType="INSIDE" />
                      </children>
                   </Pane>
                </content>
@@ -93,11 +95,31 @@
          <children>
             <Button fx:id="btn_volver" mnemonicParsing="false" onMouseClicked="#click_volver" text="Volver">
                <HBox.margin>
-                  <Insets right="300.0" />
+                  <Insets right="200.0" />
                </HBox.margin>
                <cursor>
                   <Cursor fx:constant="DEFAULT" />
                </cursor>
+            </Button>
+            <Button fx:id="btn_mover" mnemonicParsing="false" onMouseClicked="#cambia_mover" text="Mover">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btn_linea" mnemonicParsing="false" onMouseClicked="#cambia_linea" text="Linea">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btn_circulo" mnemonicParsing="false" onMouseClicked="#cambia_circulo" text="Circulo">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="btn_texto" mnemonicParsing="false" onMouseClicked="#cambia_texto" text="Texto">
+               <HBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </HBox.margin>
             </Button>
             <Label fx:id="posicion" minHeight="-Infinity" minWidth="-Infinity" text="SceneX:     ScenY:     " wrapText="true" HBox.hgrow="ALWAYS" />
          </children>

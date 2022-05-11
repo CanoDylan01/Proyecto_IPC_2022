@@ -31,11 +31,15 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import modelos.Poi;
@@ -74,6 +78,14 @@ public class CartaNauticaController implements Initializable {
     private Button btn_volver;
     @FXML
     private ImageView transportador;
+    @FXML
+    private Button btn_mover;
+    @FXML
+    private Button btn_linea;
+    @FXML
+    private Button btn_circulo;
+    @FXML
+    private Button btn_texto;
     
     public double inicioXTrans;
     public double inicioYTrans;
@@ -86,7 +98,17 @@ public class CartaNauticaController implements Initializable {
     
     public Session sesion;
     
-    Line linePainting;
+    Line linePainting;    
+    
+    @FXML
+    Circle circlePainting;
+    double inicioXArc;
+    
+    TextField textoPainting;
+
+    public enum OpcionCursor {MOVER, LINEA, CIRCULO, TEXTO};
+    OpcionCursor cursor = OpcionCursor.MOVER;
+
 
     @FXML
     void zoomIn(ActionEvent event) {
@@ -233,24 +255,74 @@ public class CartaNauticaController implements Initializable {
     }
 
     @FXML
-    private void finPintaLinea(MouseEvent event) {
-        linePainting.setEndX(event.getX());
-        linePainting.setEndY(event.getY());
-        event.consume();
+    private void finPintar(MouseEvent event) {
+        switch(cursor) 
+        {
+            case MOVER:
+                System.out.println("MOVER");
+                break;
+            case LINEA:
+                linePainting.setEndX(event.getX());
+                linePainting.setEndY(event.getY());
+                event.consume();
+                break;
+            case CIRCULO:
+                double radio = Math.abs(event.getX() - inicioXArc);
+                circlePainting.setRadius(radio);
+                event.consume();
+                break;
+            case TEXTO:
+
+                break;  
+        }
+    }
+
+    @FXML
+    private void inicioPintar(MouseEvent event) {
+        switch(cursor) 
+        {
+            case MOVER:
+                System.out.println("MOVER");
+                break;
+                
+            case LINEA:
+                linePainting = new Line(event.getX(), event.getY(), event.getX(), event.getY());
+                linePainting.fillProperty();
+                zoomGroup.getChildren().add(linePainting);
+                break;
+                
+            case CIRCULO:
+                circlePainting = new Circle(1);
+                circlePainting.setStroke(Color.RED);
+                circlePainting.setStrokeWidth(2);
+                circlePainting.setFill(Color.TRANSPARENT);
+                zoomGroup.getChildren().add(circlePainting);
+                circlePainting.setCenterX(event.getX());
+                circlePainting.setCenterY(event.getY());
+                inicioXArc = event.getX();               
+                break;
+                
+            case TEXTO:
+                textoPainting = new TextField();
+                zoomGroup.getChildren().add(textoPainting);
+                textoPainting.setLayoutX(event.getX());
+                textoPainting.setLayoutY(event.getY());
+                textoPainting.requestFocus();
+                textoPainting.setOnAction(e -> {
+                    Text textoT = new Text(textoPainting.getText());
+                    textoT.setX(textoPainting.getLayoutX());
+                    textoT.setY(textoPainting.getLayoutY());
+                    textoT.setStyle("-fx-font-family: Gafata; -fx-font-size: 40;");
+                    zoomGroup.getChildren().add(textoT);
+                    zoomGroup.getChildren().remove(textoPainting);
+                    e.consume();
+                });
+                break;  
+        }
     }
 
     @FXML
     private void editarPintaLinea(ContextMenuEvent event) {
-        
-    }
-
-    @FXML
-    private void inicioPintaLinea(MouseEvent event) {
-        linePainting = new Line(event.getX(), event.getY(), event.getX(), event.getY());
-        linePainting.fillProperty();
-        zoomGroup.getChildren().add(linePainting);
-        
-        //Eliminar linea
         linePainting.setOnContextMenuRequested(e -> {
             ContextMenu menuContext = new ContextMenu();
             MenuItem borrarItem = new MenuItem("Eliminar");
@@ -262,7 +334,6 @@ public class CartaNauticaController implements Initializable {
             menuContext.show(linePainting, e.getSceneX(), e.getSceneY());
             e.consume();
         });
-        
     }
 
     @FXML
@@ -284,5 +355,27 @@ public class CartaNauticaController implements Initializable {
         }
         catch(Exception e) {System.out.print(e);}
     }
+
+    @FXML
+    private void cambia_mover(MouseEvent event) {
+        cursor = OpcionCursor.MOVER;
+
+    }
+
+    @FXML
+    private void cambia_linea(MouseEvent event) {
+        cursor = OpcionCursor.LINEA;
+    }
+
+    @FXML
+    private void cambia_circulo(MouseEvent event) {
+        cursor = OpcionCursor.CIRCULO;
+    }
+
+    @FXML
+    private void cambia_texto(MouseEvent event) {
+        cursor = OpcionCursor.TEXTO;
+    }
+    
 
 }
