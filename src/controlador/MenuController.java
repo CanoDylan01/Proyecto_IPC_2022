@@ -65,6 +65,8 @@ public class MenuController implements Initializable {
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Práctica");
+            stage.setWidth(1200);
+            stage.setHeight(700);
             stage.centerOnScreen();
             stage.show();
             

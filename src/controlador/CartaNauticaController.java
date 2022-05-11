@@ -5,6 +5,7 @@
  */
 package controlador;
 
+import com.sun.glass.ui.Cursor;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,18 +19,23 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Line;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import modelos.Poi;
@@ -63,6 +69,15 @@ public class CartaNauticaController implements Initializable {
     private Label posicion;
     @FXML
     private Button btn_volver;
+    @FXML
+    private ImageView transportador;
+    
+    public double inicioXTrans;
+    public double inicioYTrans;
+    public double baseX;
+    public double baseY;
+    
+    Line linePainting;
 
     @FXML
     void zoomIn(ActionEvent event) {
@@ -135,7 +150,7 @@ public class CartaNauticaController implements Initializable {
         // inicializamos el slider y enlazamos con el zoom
         zoom_slider.setMin(0.2);
         zoom_slider.setMax(1.5);
-        zoom_slider.setValue(1.0);
+        zoom_slider.setValue(0.8);
         zoom_slider.valueProperty().addListener((o, oldVal, newVal) -> zoom((Double) newVal));
         
         //=========================================================================
@@ -146,7 +161,6 @@ public class CartaNauticaController implements Initializable {
         contentGroup.getChildren().add(zoomGroup);
         zoomGroup.getChildren().add(map_scrollpane.getContent());
         map_scrollpane.setContent(contentGroup);
-
     }
 
     @FXML
@@ -184,6 +198,62 @@ public class CartaNauticaController implements Initializable {
             ((Stage)btn_volver.getScene().getWindow()).close();
         }
         catch(Exception e) {System.out.print(e);}
+    }
+
+    @FXML
+    private void finTraslacion(MouseEvent event) {
+        
+    }
+
+    @FXML
+    private void translacion(MouseEvent event) {
+        double despX = event.getSceneX() - inicioXTrans;
+        double despY = event.getSceneY() - inicioYTrans;
+        transportador.setTranslateX(baseX + despX);
+        transportador.setTranslateY(baseY + despY);
+        event.consume();
+    }
+
+    @FXML
+    private void inicioTranslacion(MouseEvent event) {
+        inicioXTrans = event.getSceneX();
+        inicioYTrans = event.getSceneY();
+        baseX = transportador.getTranslateX();
+        baseY = transportador.getTranslateY();
+        event.consume();
+    }
+
+    @FXML
+    private void finPintaLinea(MouseEvent event) {
+        linePainting.setEndX(event.getX());
+        linePainting.setEndY(event.getY());
+        event.consume();
+    }
+
+    @FXML
+    private void editarPintaLinea(ContextMenuEvent event) {
+        
+    }
+
+    @FXML
+    private void inicioPintaLinea(MouseEvent event) {
+        linePainting = new Line(event.getX(), event.getY(), event.getX(), event.getY());
+        linePainting.fillProperty();
+        zoomGroup.getChildren().add(linePainting);
+        
+        //Eliminar linea
+        linePainting.setOnContextMenuRequested(e -> {
+            ContextMenu menuContext = new ContextMenu();
+            MenuItem borrarItem = new MenuItem("Eliminar");
+            menuContext.getItems().add(borrarItem);
+            borrarItem.setOnAction(ev -> {
+                zoomGroup.getChildren().remove((Node)e.getSource());
+                ev.consume();
+            });
+            menuContext.show(linePainting, e.getSceneX(), e.getSceneY());
+            e.consume();
+        });
+        
     }
 
 }

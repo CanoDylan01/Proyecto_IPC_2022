@@ -60,7 +60,7 @@
                <content>
                   <Pane>
                      <children>
-                        <ImageView pickOnBounds="true">
+                        <ImageView onContextMenuRequested="#editarPintaLinea" onMouseDragged="#finPintaLinea" onMousePressed="#inicioPintaLinea" pickOnBounds="true">
                            <image>
                               <Image url="@../resources/carta_nautica.jpg" />
                            </image>
@@ -77,6 +77,11 @@
                               <String fx:value="map-pin" />
                            </styleClass>
                         </MenuButton>
+                        <ImageView fx:id="transportador" fitHeight="448.0" fitWidth="516.0" layoutX="24.0" layoutY="30.0" onMouseDragged="#translacion" onMousePressed="#inicioTranslacion" onMouseReleased="#finTraslacion" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/transportador.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </Pane>
                </content>
