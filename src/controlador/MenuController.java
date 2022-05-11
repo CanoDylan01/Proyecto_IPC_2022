@@ -38,7 +38,7 @@ public class MenuController implements Initializable {
 
     @FXML
     private void pulsadoVolver(MouseEvent event) {
-                try 
+        try 
         {
             FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Login.fxml"));
             Parent root1= (Parent)fxmlLoaderMenu.load();
@@ -46,10 +46,6 @@ public class MenuController implements Initializable {
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Menu");
-            stage.setMinWidth(1290);
-            stage.setMinHeight(758);
-            stage.setMaxWidth(1295);
-            stage.setMaxHeight(758);
             stage.centerOnScreen();
             stage.show();
             
@@ -69,10 +65,6 @@ public class MenuController implements Initializable {
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Práctica");
-            stage.setMinWidth(1290);
-            stage.setMinHeight(758);
-            stage.setMaxWidth(1295);
-            stage.setMaxHeight(758);
             stage.centerOnScreen();
             stage.show();
             

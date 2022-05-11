@@ -178,10 +178,6 @@ public class CartaNauticaController implements Initializable {
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Menu");
-            stage.setMinWidth(1290);
-            stage.setMinHeight(758);
-            stage.setMaxWidth(1295);
-            stage.setMaxHeight(758);
             stage.centerOnScreen();
             stage.show();
                 
