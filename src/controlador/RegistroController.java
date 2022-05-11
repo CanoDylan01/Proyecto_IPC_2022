@@ -6,6 +6,7 @@
 package controlador;
 
 import DBAccess.NavegacionDAOException;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -21,8 +22,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import model.Navegacion;
 import model.Session;
 import model.User;
@@ -56,6 +61,20 @@ public class RegistroController implements Initializable {
     public User usuario;
     
     public Session sesion;
+    @FXML
+    private ImageView avatar;
+    @FXML
+    private Button showPass;
+    @FXML
+    private Button showPass2;
+    @FXML
+    private TextField verContra1;
+    @FXML
+    private TextField verContra2;
+    @FXML
+    private ImageView ojo1;
+    @FXML
+    private ImageView ojo2;
 
     /**
      * Initializes the controller class.
@@ -101,10 +120,11 @@ public class RegistroController implements Initializable {
                 Parent root1= (Parent)fxmlLoaderMenu.load();
                 MenuController menu = (MenuController) fxmlLoaderMenu.getController();
                 
-                usuario = navegacion.registerUser(campoUsuario.getText(), campoCorreo.getText(), campoContra1.getText(), fechaNacimiento.getValue());
+                usuario = navegacion.registerUser(campoUsuario.getText(), campoCorreo.getText(), campoContra1.getText(), avatar.getImage(), fechaNacimiento.getValue());
                 
                 if (usuario != null) 
                 {
+                    menu.usuario = this.usuario;
                     Stage stage= new Stage();
                     stage.setScene(new Scene(root1));
                     stage.setTitle("Menu");
@@ -130,7 +150,62 @@ public class RegistroController implements Initializable {
 
     @FXML
     private void pulsadoImagen(ActionEvent event) {
-        
+        String currentDir = System.getProperty("user.dir") + File.separator + "src/avatars";
+        File file = new File(currentDir);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(file);
+        fileChooser.setTitle("Buscar Imagen");
+
+        // Agregar filtros para facilitar la busqueda
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        Window stage = null;
+
+        // Obtener la imagen seleccionada
+        File imgFile = fileChooser.showOpenDialog(stage);
+
+        // Mostar la imagen
+        if (imgFile != null) {
+            Image image = new Image("file:" + imgFile.getAbsolutePath());
+            avatar.setImage(image);
+        }
+    }
+
+    @FXML
+    private void hidePass1(MouseEvent event) {
+        campoContra1.setVisible(true);
+        verContra1.setDisable(true);
+            
+        ojo1.setStyle("-fx-image:url(/resources/n.png)");
+    }
+
+    @FXML
+    private void showPass1(MouseEvent event) {
+        campoContra1.setVisible(false);
+        verContra1.setDisable(false);
+        verContra1.setText(campoContra1.getText());
+           
+        ojo1.setStyle("-fx-image:url(/resources/y.jpg)");
+    }
+
+    @FXML
+    private void hidePass2(MouseEvent event) {
+        campoContra2.setVisible(true);
+        verContra2.setDisable(true);
+            
+        ojo2.setStyle("-fx-image:url(/resources/n.png)");
+    }
+
+    @FXML
+    private void showPass2(MouseEvent event) {
+        campoContra2.setVisible(false);
+        verContra2.setDisable(false);
+        verContra2.setText(campoContra1.getText());
+           
+        ojo2.setStyle("-fx-image:url(/resources/y.jpg)");
     }
     
 }
