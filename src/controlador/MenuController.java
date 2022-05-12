@@ -70,13 +70,15 @@ public class MenuController implements Initializable {
 
     @FXML
     private void pulsadoPracticar(MouseEvent event) {
-            try 
+        try 
         {
             FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/CartaNautica.fxml"));
             Parent root1= (Parent)fxmlLoaderMenu.load();
             CartaNauticaController cartaNautica = (CartaNauticaController) fxmlLoaderMenu.getController();
             cartaNautica.navegacion = this.navegacion;
             cartaNautica.usuario = this.usuario;
+            cartaNautica.sesion = this.sesion;
+
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Práctica");

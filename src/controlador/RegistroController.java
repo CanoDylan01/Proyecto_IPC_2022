@@ -91,6 +91,8 @@ public class RegistroController implements Initializable {
             FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Login.fxml"));
             Parent root1= (Parent)fxmlLoaderMenu.load();
             LoginController login = (LoginController) fxmlLoaderMenu.getController();
+            login.navegacion = this.navegacion;
+            
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Menu");
@@ -125,6 +127,9 @@ public class RegistroController implements Initializable {
                 if (usuario != null) 
                 {
                     menu.usuario = this.usuario;
+                    menu.navegacion = this.navegacion;
+                    menu.sesion = this.sesion;
+                    
                     Stage stage= new Stage();
                     stage.setScene(new Scene(root1));
                     stage.setTitle("Menu");
