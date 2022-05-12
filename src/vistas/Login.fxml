@@ -89,9 +89,9 @@
                   <Font size="18.0" />
                </font>
             </PasswordField>
-            <Button fx:id="btn_inisesion" mnemonicParsing="false" onMouseClicked="#ini_sesion" text="Iniciar Sesión">
+            <Button fx:id="btn_inisesion" mnemonicParsing="false" onMouseClicked="#ini_sesion" stylesheets="@../estilos/login.css" text="Iniciar Sesión">
                <font>
-                  <Font size="14.0" />
+                  <Font name="Dubai Regular" size="15.0" />
                </font>
                <VBox.margin>
                   <Insets left="200.0" top="20.0" />

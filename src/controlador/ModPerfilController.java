@@ -79,6 +79,8 @@ public class ModPerfilController implements Initializable {
             MenuController menu = (MenuController) fxmlLoaderMenu.getController();
             
             menu.usuario = this.usuario;
+            menu.navegacion = this.navegacion;
+            menu.sesion = this.sesion;
             
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
@@ -117,6 +119,9 @@ public class ModPerfilController implements Initializable {
                 if (usuario != null) 
                 {
                     menu.usuario = this.usuario;
+                    menu.navegacion = this.navegacion;
+                    menu.sesion = this.sesion;
+                    
                     Stage stage= new Stage();
                     stage.setScene(new Scene(root1));
                     stage.setTitle("Menu");

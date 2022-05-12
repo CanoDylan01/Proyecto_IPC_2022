@@ -55,12 +55,6 @@ public class RegistroController implements Initializable {
     private PasswordField campoContra2;
     @FXML
     private Button btn_seleccionarImagen;
-    
-    public Navegacion navegacion;
-    
-    public User usuario;
-    
-    public Session sesion;
     @FXML
     private ImageView avatar;
     @FXML
@@ -76,6 +70,12 @@ public class RegistroController implements Initializable {
     @FXML
     private ImageView ojo2;
 
+    public Navegacion navegacion;
+    
+    public User usuario;
+    
+    public Session sesion;
+    
     /**
      * Initializes the controller class.
      */

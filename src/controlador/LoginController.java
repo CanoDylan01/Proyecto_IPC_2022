@@ -43,10 +43,8 @@ public class LoginController implements Initializable {
     @FXML
     private Hyperlink link_Registro;
     
-    public static Navegacion navegacion;
-    
-    public User usuario;
-    
+    public static Navegacion navegacion;   
+    public User usuario; 
     public Session sesion;
 
     /**
@@ -84,14 +82,13 @@ public class LoginController implements Initializable {
                 Parent root1= (Parent)fxmlLoaderMenu.load();
                 MenuController menu = (MenuController) fxmlLoaderMenu.getController();
                 menu.navegacion = this.navegacion;
+                menu.sesion = this.sesion;
                 
-                
-                //navegacion.createDemoData(2);
-                //Conexión con la BD
-                //navegacion = Navegacion.getSingletonNavegacion();
+
                 
                 usuario = navegacion.loginUser(campoUsuario.getText(), campoPassword.getText());
                 menu.usuario = this.usuario;
+                
                 if (usuario != null ) 
                 {
                     Stage stage= new Stage();
@@ -121,6 +118,7 @@ public class LoginController implements Initializable {
         Parent root1= (Parent)fxmlLoaderRegistro.load();
         RegistroController registro = (RegistroController) fxmlLoaderRegistro.getController();
         registro.navegacion = this.navegacion;
+        
         Stage stage= new Stage();
         stage.setScene(new Scene(root1));
         stage.setTitle("Registro de usuarios");

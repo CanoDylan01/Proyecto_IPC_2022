@@ -31,14 +31,15 @@ public class MenuController implements Initializable {
     private Button btn_volver;
     @FXML
     private Button btn_practica;
+    @FXML
+    private Button btn_Modificar;
     
-    public static Navegacion navegacion;
+    public Navegacion navegacion;
     
     public User usuario;
     
     public Session sesion;
-    @FXML
-    private Button btn_Modificar;
+
 
     /**
      * Initializes the controller class.
@@ -98,6 +99,7 @@ public class MenuController implements Initializable {
             ModPerfilController modPerfil = (ModPerfilController) fxmlLoaderMod.getController();
             modPerfil.navegacion = this.navegacion;
             modPerfil.usuario = this.usuario;
+            modPerfil.sesion = this.sesion;
             
             modPerfil.campoUsuario.setText(usuario.getNickName());
             modPerfil.campoContra1.setText(usuario.getPassword());
@@ -108,8 +110,6 @@ public class MenuController implements Initializable {
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Práctica");
-            stage.setWidth(1200);
-            stage.setHeight(700);
             stage.centerOnScreen();
             stage.show();
             

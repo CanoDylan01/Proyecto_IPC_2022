@@ -259,7 +259,7 @@ public class CartaNauticaController implements Initializable {
         switch(cursor) 
         {
             case MOVER:
-                System.out.println("MOVER");
+                
                 break;
             case LINEA:
                 linePainting.setEndX(event.getX());
@@ -282,7 +282,7 @@ public class CartaNauticaController implements Initializable {
         switch(cursor) 
         {
             case MOVER:
-                System.out.println("MOVER");
+                
                 break;
                 
             case LINEA:
