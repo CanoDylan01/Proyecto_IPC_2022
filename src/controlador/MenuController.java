@@ -6,6 +6,7 @@
 package controlador;
 
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,12 +34,15 @@ public class MenuController implements Initializable {
     private Button btn_practica;
     @FXML
     private Button btn_Modificar;
+    @FXML
+    private Button btn_verSesiones;
     
     public Navegacion navegacion;
     
     public User usuario;
     
     public Session sesion;
+
 
 
     /**
@@ -77,6 +81,7 @@ public class MenuController implements Initializable {
             CartaNauticaController cartaNautica = (CartaNauticaController) fxmlLoaderMenu.getController();
             cartaNautica.navegacion = this.navegacion;
             cartaNautica.usuario = this.usuario;
+            sesion = new Session( LocalDateTime.now(), 3, 1);
             cartaNautica.sesion = this.sesion;
 
             Stage stage= new Stage();
@@ -116,6 +121,27 @@ public class MenuController implements Initializable {
             stage.show();
             
             ((Stage)btn_practica.getScene().getWindow()).close();
+        }
+        catch(Exception e) {System.out.print(e);}
+    }
+
+    @FXML
+    private void click_verSesiones(MouseEvent event) {
+        try 
+        {
+            FXMLLoader fxmlLoaderMod= new FXMLLoader(getClass().getResource("/vistas/VerSesiones.fxml"));
+            Parent root1= (Parent)fxmlLoaderMod.load();
+            VerSesionesController verSesiones = (VerSesionesController) fxmlLoaderMod.getController();
+            verSesiones.navegacion = this.navegacion;
+            verSesiones.usuario = this.usuario;
+            
+            Stage stage= new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Ver Sesiones");
+            stage.centerOnScreen();
+            stage.show();
+            
+            ((Stage)btn_verSesiones.getScene().getWindow()).close();
         }
         catch(Exception e) {System.out.print(e);}
     }

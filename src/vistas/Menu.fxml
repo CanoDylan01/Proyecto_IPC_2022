@@ -36,7 +36,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="79.0" mnemonicParsing="false" styleClass="mainFxmlClass" stylesheets="@../estilos/menu.css" text="Ver Sesiones">
+                  <Button fx:id="btn_verSesiones" alignment="CENTER" contentDisplay="CENTER" layoutX="95.0" layoutY="79.0" mnemonicParsing="false" onMouseClicked="#click_verSesiones" styleClass="mainFxmlClass" stylesheets="@../estilos/menu.css" text="Ver Sesiones">
                      <font>
                         <Font size="18.0" />
                      </font>

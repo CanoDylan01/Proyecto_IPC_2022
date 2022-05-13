@@ -220,6 +220,9 @@ public class CartaNauticaController implements Initializable {
             FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Menu.fxml"));
             Parent root1= (Parent)fxmlLoaderMenu.load();
             MenuController menu = (MenuController) fxmlLoaderMenu.getController();
+            menu.navegacion = this.navegacion;
+            menu.usuario = this.usuario;
+            
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Menu");
