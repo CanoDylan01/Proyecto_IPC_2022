@@ -76,12 +76,14 @@ public class RegistroController implements Initializable {
     
     public Session sesion;
     
+    public LocalDate fecha;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        fecha = LocalDate.now();
     }    
 
     @FXML
@@ -112,6 +114,46 @@ public class RegistroController implements Initializable {
             alert.setHeaderText(null);
             alert.setTitle("Error");
             alert.setContentText("Campos vacíos.\n Por favor complete los campos.");
+            alert.showAndWait();
+        }
+        else if(navegacion.exitsNickName(campoUsuario.getText()))
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Usuario Existente.\n Ya existe una cuenta con ese usuario. \n Elija otro usuario por favor.");
+            alert.showAndWait();
+        }
+        else if(!User.checkNickName(campoUsuario.getText()))
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Usuario inválido.\n Ese nombre de usuario no es válido. \n Introduzca uno que si lo sea.");
+            alert.showAndWait();
+        }
+        else if(!User.checkEmail(campoCorreo.getText()))
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Correo inválido.\n Ese correo no es válido. \n Introduzca uno que si lo sea.");
+            alert.showAndWait();
+        }
+        else if(!User.checkPassword(campoContra1.getText()))
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Contraseña inválida.\n La contraseña proporcionada no es válida. \n Introduzca una que si lo sea.");
+            alert.showAndWait();
+        }
+        else if(!esMenor())
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Usuario menor de edad.\n Ese nombre de usuario no es válido. \n Introduzca uno que si lo sea.");
             alert.showAndWait();
         }
         else
@@ -208,9 +250,13 @@ public class RegistroController implements Initializable {
     private void showPass2(MouseEvent event) {
         campoContra2.setVisible(false);
         verContra2.setDisable(false);
-        verContra2.setText(campoContra1.getText());
+        verContra2.setText(campoContra2.getText());
            
         ojo2.setStyle("-fx-image:url(/resources/y.jpg)");
     }
     
+    private Boolean esMenor() {
+        LocalDate aux = fecha.minusYears(16);
+        return fechaNacimiento.getValue().isBefore(aux);
+    }
 }

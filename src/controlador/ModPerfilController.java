@@ -9,6 +9,7 @@ import DBAccess.NavegacionDAOException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -61,13 +63,27 @@ public class ModPerfilController implements Initializable {
     public Session sesion;
     @FXML
     public ImageView avatar;
+    @FXML
+    private TextField verContra1;
+    @FXML
+    private TextField verContra2;
+    @FXML
+    private Button showPass;
+    @FXML
+    private Button showPass2;
+    @FXML
+    private ImageView ojo1;
+    @FXML
+    private ImageView ojo2;
+    
+    private LocalDate fecha;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        fecha = LocalDate.now();
     }    
 
     @FXML
@@ -101,6 +117,30 @@ public class ModPerfilController implements Initializable {
             alert.setHeaderText(null);
             alert.setTitle("Error");
             alert.setContentText("Campos vacíos.\n Por favor complete los campos.");
+            alert.showAndWait();
+        }
+        else if(!User.checkEmail(campoCorreo.getText()))
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Correo inválido.\n Ese correo no es válido. \n Introduzca uno que si lo sea.");
+            alert.showAndWait();
+        }
+        else if(!User.checkPassword(campoContra1.getText()))
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Contraseña inválida.\n La contraseña proporcionada no es válida. \n Introduzca una que si lo sea.");
+            alert.showAndWait();
+        }
+        else if(!esMenor())
+        {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText(null);
+            alert.setTitle("Error");
+            alert.setContentText("Usuario menor de edad.\n Ese nombre de usuario no es válido. \n Introduzca uno que si lo sea.");
             alert.showAndWait();
         }
         else
@@ -170,5 +210,43 @@ public class ModPerfilController implements Initializable {
         }
         return false;
     }
+
+    @FXML
+    private void hidePass1(MouseEvent event) {
+        campoContra1.setVisible(true);
+        verContra1.setDisable(true);
+            
+        ojo1.setStyle("-fx-image:url(/resources/n.png)");
+    }
+
+    @FXML
+    private void showPass1(MouseEvent event) {
+        campoContra1.setVisible(false);
+        verContra1.setDisable(false);
+        verContra1.setText(campoContra1.getText());
+           
+        ojo1.setStyle("-fx-image:url(/resources/y.jpg)");
+    }
+
+    @FXML
+    private void hidePass2(MouseEvent event) {
+        campoContra2.setVisible(true);
+        verContra2.setDisable(true);
+            
+        ojo2.setStyle("-fx-image:url(/resources/n.png)");
+    }
+
+    @FXML
+    private void showPass2(MouseEvent event) {
+        campoContra2.setVisible(false);
+        verContra2.setDisable(false);
+        verContra2.setText(campoContra2.getText());
+           
+        ojo2.setStyle("-fx-image:url(/resources/y.jpg)");
+    }
     
+    private Boolean esMenor() {
+        LocalDate aux = fecha.minusYears(16);
+        return fechaNacimiento.getValue().isBefore(aux);
+    }
 }
