@@ -90,102 +90,11 @@ public class RegistroController implements Initializable {
 
     @FXML
     private void click_Volver(MouseEvent event) {
-        try 
-        {
-            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Login.fxml"));
-            Parent root1= (Parent)fxmlLoaderMenu.load();
-            LoginController login = (LoginController) fxmlLoaderMenu.getController();
-            login.navegacion = this.navegacion;
-            
-            Stage stage= new Stage();
-            stage.setScene(new Scene(root1));
-            stage.setTitle("Menu");
-            stage.centerOnScreen();
-            stage.show();
-            
-            ((Stage)btn_Volver.getScene().getWindow()).close();
-        }
-        catch(Exception e) {System.out.print(e);}
+        Volver();
     }
 
     @FXML
-    private void click_Resgistrarse(MouseEvent event) throws IOException {
-        /*if(checkCamposVacios()) 
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Campos vacíos.\n Por favor complete los campos.");
-            alert.showAndWait();
-        }
-        else if(navegacion.exitsNickName(campoUsuario.getText()))
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Usuario Existente.\n Ya existe una cuenta con ese usuario. \n Elija otro usuario por favor.");
-            alert.showAndWait();
-        }
-        else if(!User.checkNickName(campoUsuario.getText()))
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Usuario inválido.\n Ese nombre de usuario no es válido. \n Introduzca uno que si lo sea.");
-            alert.showAndWait();
-        }
-        else if(!User.checkEmail(campoCorreo.getText()))
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Correo inválido.\n Ese correo no es válido. \n Introduzca uno que si lo sea.");
-            alert.showAndWait();
-        }
-        else if(!User.checkPassword(campoContra1.getText()))
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Contraseña inválida.\n La contraseña proporcionada no es válida. \n Introduzca una que si lo sea.");
-            alert.showAndWait();
-        }
-        else if(!esMenor())
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Usuario menor de edad.\n Ese nombre de usuario no es válido. \n Introduzca uno que si lo sea.");
-            alert.showAndWait();
-        }
-        else
-        {   
-            try 
-            {
-                FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Menu.fxml"));
-                Parent root1= (Parent)fxmlLoaderMenu.load();
-                MenuController menu = (MenuController) fxmlLoaderMenu.getController();
-                
-                usuario = navegacion.registerUser(campoUsuario.getText(), campoCorreo.getText(), campoContra1.getText(), avatar.getImage(), fechaNacimiento.getValue());
-                
-                if (usuario != null) 
-                {
-                    menu.usuario = this.usuario;
-                    menu.navegacion = this.navegacion;
-                    menu.sesion = this.sesion;
-                    
-                    Stage stage= new Stage();
-                    stage.setScene(new Scene(root1));
-                    stage.setTitle("Menu");
-                    stage.centerOnScreen();
-                    stage.show();
-
-                    ((Stage)btn_Registrarse.getScene().getWindow()).close();
-                }
-                else {System.out.print("No se ha podido crear el usuario");}
-            }
-            catch(NavegacionDAOException e) {System.out.print(e);}
-        }*/  
+    private void click_Resgistrarse(MouseEvent event) throws IOException {  
         Registro();
     }
     
@@ -273,6 +182,9 @@ public class RegistroController implements Initializable {
 
     @FXML
     private void kVolver(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            Volver();
+        }
     }
 
     @FXML
@@ -384,5 +296,24 @@ public class RegistroController implements Initializable {
             }
             catch(NavegacionDAOException e) {System.out.print(e);}
         }
+    }
+    
+    private void Volver() {
+        try 
+        {
+            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Login.fxml"));
+            Parent root1= (Parent)fxmlLoaderMenu.load();
+            LoginController login = (LoginController) fxmlLoaderMenu.getController();
+            login.navegacion = this.navegacion;
+            
+            Stage stage= new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Menu");
+            stage.centerOnScreen();
+            stage.show();
+            
+            ((Stage)btn_Volver.getScene().getWindow()).close();
+        }
+        catch(Exception e) {System.out.print(e);}
     }
 }
