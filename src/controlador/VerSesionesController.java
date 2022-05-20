@@ -7,8 +7,10 @@ package controlador;
 
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Navegacion;
@@ -35,9 +38,6 @@ public class VerSesionesController implements Initializable {
     private Button btn_volver;
     @FXML
     private TableView<Session> tableView_Sesiones;
-    
-    public Navegacion navegacion;
-    public User usuario;
     @FXML
     private TableColumn<Session, String> colSesion;
     @FXML
@@ -46,6 +46,13 @@ public class VerSesionesController implements Initializable {
     private TableColumn<Session, Integer> colFalladas;
     @FXML
     private TableColumn<Session, LocalDateTime> colFecha;
+    
+    ObservableList<Session> datos = null;
+        
+    public Navegacion navegacion;
+    public Session sesion;
+    public User usuario;
+    
 
     /**
      * Initializes the controller class.
@@ -53,12 +60,19 @@ public class VerSesionesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        //ObservableList<Session> sesiones = (ObservableList)usuario.getSessions();
-        //this.tableView_Sesiones.setItems(sesiones);
         
-        //tableView_Sesiones;
+
     }    
 
+    public void getSesionUser() 
+    {
+        
+        
+        datos = FXCollections.observableList(usuario.getSessions()); 
+        tableView_Sesiones.setItems(datos);
+        //colAcertadas.cellFactoryProperty(new PropertyValueFactory<Session, int>("hints"));
+    }
+    
     @FXML
     private void click_volver(MouseEvent event) {
         try 

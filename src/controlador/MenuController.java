@@ -7,7 +7,9 @@ package controlador;
 
 import java.net.URL;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +20,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Navegacion;
+import model.Problem;
 import model.Session;
 import model.User;
 
@@ -76,19 +79,25 @@ public class MenuController implements Initializable {
     private void pulsadoPracticar(MouseEvent event) {
         try 
         {
-            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/CartaNautica.fxml"));
+            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/RealizarEjercicio.fxml"));
             Parent root1= (Parent)fxmlLoaderMenu.load();
-            CartaNauticaController cartaNautica = (CartaNauticaController) fxmlLoaderMenu.getController();
-            cartaNautica.navegacion = this.navegacion;
-            cartaNautica.usuario = this.usuario;
+            RealizarEjercicioController realizarEjercicio = (RealizarEjercicioController) fxmlLoaderMenu.getController();
+            realizarEjercicio.usuario = this.usuario;
+            realizarEjercicio.sesion = this.sesion;
+            realizarEjercicio.navegacion = this.navegacion;
+            
+            realizarEjercicio.disableButtons();
+             
+            var datos = FXCollections.observableList(navegacion.getProblems());
+            realizarEjercicio.list_problemas.setItems(datos);
+            
             sesion = new Session( LocalDateTime.now(), 3, 1);
-            cartaNautica.sesion = this.sesion;
+            usuario.addSession(sesion);
+
 
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
-            stage.setTitle("Práctica");
-            stage.setWidth(1200);
-            stage.setHeight(700);
+            stage.setTitle("Elección de ejercicios");
             stage.centerOnScreen();
             stage.show();
             
@@ -120,7 +129,7 @@ public class MenuController implements Initializable {
             stage.centerOnScreen();
             stage.show();
             
-            ((Stage)btn_practica.getScene().getWindow()).close();
+            ((Stage)btn_Modificar.getScene().getWindow()).close();
         }
         catch(Exception e) {System.out.print(e);}
     }
@@ -134,6 +143,8 @@ public class MenuController implements Initializable {
             VerSesionesController verSesiones = (VerSesionesController) fxmlLoaderMod.getController();
             verSesiones.navegacion = this.navegacion;
             verSesiones.usuario = this.usuario;
+            
+            verSesiones.getSesionUser();
             
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
