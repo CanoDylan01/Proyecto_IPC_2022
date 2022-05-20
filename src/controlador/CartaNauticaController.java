@@ -217,6 +217,7 @@ public class CartaNauticaController implements Initializable {
     private void click_volver(MouseEvent event) {
         try 
         {
+            
             FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Menu.fxml"));
             Parent root1= (Parent)fxmlLoaderMenu.load();
             MenuController menu = (MenuController) fxmlLoaderMenu.getController();

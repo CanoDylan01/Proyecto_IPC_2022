@@ -10,14 +10,11 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.LoginController">
+<GridPane prefHeight="720.0" prefWidth="1280.0" styleClass="bodygb" stylesheets="@../estilos/login.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.LoginController">
   <columnConstraints>
       <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -29,24 +26,7 @@
       <RowConstraints fillHeight="false" minHeight="0.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Rectangle arcHeight="50.0" arcWidth="50.0" height="520.0" stroke="BLACK" strokeType="INSIDE" width="426.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <fill>
-            <RadialGradient centerX="0.5" centerY="0.5" radius="0.5">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color green="1.0" blue="0.01666666753590107" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color green="0.8315789699554443" blue="0.38807016611099243" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </fill>
-      </Rectangle>
+      <Rectangle arcHeight="50.0" arcWidth="50.0" fill="#85858568" height="520.0" stroke="BLACK" strokeType="INSIDE" width="426.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <VBox prefHeight="502.0" prefWidth="427.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="INICIO SESIÓN" VBox.vgrow="ALWAYS">

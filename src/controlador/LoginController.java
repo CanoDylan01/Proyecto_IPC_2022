@@ -93,6 +93,8 @@ public class LoginController implements Initializable {
                     Stage stage= new Stage();
                     stage.setScene(new Scene(root1));
                     stage.setTitle("Menu");
+                    //stage.setHeight(800);
+                    //stage.setWidth(1200);
                     stage.centerOnScreen();
                     stage.show();
 
