@@ -24,6 +24,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -88,26 +90,136 @@ public class RegistroController implements Initializable {
 
     @FXML
     private void click_Volver(MouseEvent event) {
-        try 
-        {
-            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Login.fxml"));
-            Parent root1= (Parent)fxmlLoaderMenu.load();
-            LoginController login = (LoginController) fxmlLoaderMenu.getController();
-            login.navegacion = this.navegacion;
-            
-            Stage stage= new Stage();
-            stage.setScene(new Scene(root1));
-            stage.setTitle("Menu");
-            stage.centerOnScreen();
-            stage.show();
-            
-            ((Stage)btn_Volver.getScene().getWindow()).close();
-        }
-        catch(Exception e) {System.out.print(e);}
+        Volver();
     }
 
     @FXML
-    private void click_Resgistrarse(MouseEvent event) throws IOException {
+    private void click_Resgistrarse(MouseEvent event) throws IOException {  
+        Registro();
+    }
+    
+
+    private boolean checkCamposVacios() {
+        if("".equals(campoUsuario.getText()) || "".equals(campoCorreo.getText()) ||
+           "".equals(campoContra1.getText()) || "".equals(campoContra2.getText()) || fechaNacimiento.getValue() == null)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    @FXML
+    private void pulsadoImagen(ActionEvent event) {
+        String currentDir = System.getProperty("user.dir") + File.separator + "src/avatars";
+        File file = new File(currentDir);
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setInitialDirectory(file);
+        fileChooser.setTitle("Buscar Imagen");
+
+        // Agregar filtros para facilitar la busqueda
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+        Window stage = null;
+
+        // Obtener la imagen seleccionada
+        File imgFile = fileChooser.showOpenDialog(stage);
+
+        // Mostar la imagen
+        if (imgFile != null) {
+            Image image = new Image("file:" + imgFile.getAbsolutePath());
+            avatar.setImage(image);
+        }
+    }
+
+    @FXML
+    private void hidePass1(MouseEvent event) {
+        campoContra1.setVisible(true);
+        verContra1.setDisable(true);
+            
+        ojo1.setStyle("-fx-image:url(/resources/n.png)");
+    }
+
+    @FXML
+    private void showPass1(MouseEvent event) {
+        campoContra1.setVisible(false);
+        verContra1.setDisable(false);
+        verContra1.setText(campoContra1.getText());
+           
+        ojo1.setStyle("-fx-image:url(/resources/y.jpg)");
+    }
+
+    @FXML
+    private void hidePass2(MouseEvent event) {
+        campoContra2.setVisible(true);
+        verContra2.setDisable(true);
+            
+        ojo2.setStyle("-fx-image:url(/resources/n.png)");
+    }
+
+    @FXML
+    private void showPass2(MouseEvent event) {
+        campoContra2.setVisible(false);
+        verContra2.setDisable(false);
+        verContra2.setText(campoContra2.getText());
+           
+        ojo2.setStyle("-fx-image:url(/resources/y.jpg)");
+    }
+    
+    private Boolean esMenor() {
+        LocalDate aux = fecha.minusYears(16);
+        return fechaNacimiento.getValue().isBefore(aux);
+    }
+
+    @FXML
+    private void cambioCampo(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            cambiaFoco();
+        }
+    }
+
+    @FXML
+    private void kVolver(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            Volver();
+        }
+    }
+
+    @FXML
+    private void kRegistro(KeyEvent event) throws IOException {
+        if (event.getCode() == KeyCode.ENTER) {
+            Registro();
+        }
+    }
+    
+    private void cambiaFoco() {
+        if (campoUsuario.isFocused()) {
+            campoCorreo.requestFocus();
+        }
+        else if (campoCorreo.isFocused()) {
+            if (campoContra1.isDisable()) {
+                verContra1.requestFocus();
+            }
+            else { campoContra1.requestFocus();}
+        }
+        else if (campoContra1.isFocused() || verContra1.isFocused()) {
+            if (campoContra2.isDisabled()) {
+                verContra2.requestFocus();
+            }
+            else { campoContra2.requestFocus(); }
+        }
+        else if (campoContra2.isFocused() || verContra2.isFocused()) {
+            btn_seleccionarImagen.requestFocus();
+        }
+        else if (btn_seleccionarImagen.isFocused()) {
+            fechaNacimiento.requestFocus();
+        }
+        else { btn_Registrarse.requestFocus();}
+    }
+    
+    private void Registro() throws IOException {
         if(checkCamposVacios()) 
         {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -183,80 +295,25 @@ public class RegistroController implements Initializable {
                 else {System.out.print("No se ha podido crear el usuario");}
             }
             catch(NavegacionDAOException e) {System.out.print(e);}
-        }          
-    }
-
-    private boolean checkCamposVacios() {
-        if("".equals(campoUsuario.getText()) || "".equals(campoCorreo.getText()) ||
-           "".equals(campoContra1.getText()) || "".equals(campoContra2.getText()) || fechaNacimiento.getValue() == null)
-        {
-            return true;
         }
-        return false;
-    }
-
-    @FXML
-    private void pulsadoImagen(ActionEvent event) {
-        String currentDir = System.getProperty("user.dir") + File.separator + "src/avatars";
-        File file = new File(currentDir);
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(file);
-        fileChooser.setTitle("Buscar Imagen");
-
-        // Agregar filtros para facilitar la busqueda
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("All Images", "*.*"),
-                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                new FileChooser.ExtensionFilter("PNG", "*.png")
-        );
-        Window stage = null;
-
-        // Obtener la imagen seleccionada
-        File imgFile = fileChooser.showOpenDialog(stage);
-
-        // Mostar la imagen
-        if (imgFile != null) {
-            Image image = new Image("file:" + imgFile.getAbsolutePath());
-            avatar.setImage(image);
-        }
-    }
-
-    @FXML
-    private void hidePass1(MouseEvent event) {
-        campoContra1.setVisible(true);
-        verContra1.setDisable(true);
-            
-        ojo1.setStyle("-fx-image:url(/resources/n.png)");
-    }
-
-    @FXML
-    private void showPass1(MouseEvent event) {
-        campoContra1.setVisible(false);
-        verContra1.setDisable(false);
-        verContra1.setText(campoContra1.getText());
-           
-        ojo1.setStyle("-fx-image:url(/resources/y.jpg)");
-    }
-
-    @FXML
-    private void hidePass2(MouseEvent event) {
-        campoContra2.setVisible(true);
-        verContra2.setDisable(true);
-            
-        ojo2.setStyle("-fx-image:url(/resources/n.png)");
-    }
-
-    @FXML
-    private void showPass2(MouseEvent event) {
-        campoContra2.setVisible(false);
-        verContra2.setDisable(false);
-        verContra2.setText(campoContra2.getText());
-           
-        ojo2.setStyle("-fx-image:url(/resources/y.jpg)");
     }
     
-    private Boolean esMenor() {
-        LocalDate aux = fecha.minusYears(16);
-        return fechaNacimiento.getValue().isBefore(aux);
+    private void Volver() {
+        try 
+        {
+            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Login.fxml"));
+            Parent root1= (Parent)fxmlLoaderMenu.load();
+            LoginController login = (LoginController) fxmlLoaderMenu.getController();
+            login.navegacion = this.navegacion;
+            
+            Stage stage= new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Menu");
+            stage.centerOnScreen();
+            stage.show();
+            
+            ((Stage)btn_Volver.getScene().getWindow()).close();
+        }
+        catch(Exception e) {System.out.print(e);}
     }
 }

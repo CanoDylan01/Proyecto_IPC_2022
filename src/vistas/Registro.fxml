@@ -13,10 +13,10 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistroController">
    <children>
-      <TextField fx:id="campoUsuario" layoutX="53.0" layoutY="54.0" />
-      <TextField fx:id="campoCorreo" layoutX="53.0" layoutY="114.0" />
+      <TextField fx:id="campoUsuario" layoutX="53.0" layoutY="54.0" onKeyPressed="#cambioCampo" />
+      <TextField fx:id="campoCorreo" layoutX="53.0" layoutY="114.0" onKeyPressed="#cambioCampo" />
       <TextField fx:id="verContra1" layoutX="53.0" layoutY="166.0" />
-      <PasswordField fx:id="campoContra1" layoutX="53.0" layoutY="166.0" />
+      <PasswordField fx:id="campoContra1" layoutX="53.0" layoutY="166.0" onKeyPressed="#cambioCampo" />
       <Label layoutX="53.0" layoutY="36.0" text="Usuario" />
       <Label layoutX="53.0" layoutY="148.0" text="Contraseña" />
       <Label layoutX="53.0" layoutY="89.0" text="Correo" />
@@ -25,14 +25,14 @@
             <Image url="@../avatars/default.png" />
          </image>
       </ImageView>
-      <Button fx:id="btn_Volver" layoutX="29.0" layoutY="336.0" mnemonicParsing="false" onMouseClicked="#click_Volver" text="Volver" />
-      <Button fx:id="btn_Registrarse" layoutX="450.0" layoutY="349.0" mnemonicParsing="false" onMouseClicked="#click_Resgistrarse" text="Registrarse" />
+      <Button fx:id="btn_Volver" layoutX="29.0" layoutY="336.0" mnemonicParsing="false" onKeyPressed="#kVolver" onMouseClicked="#click_Volver" text="Volver" />
+      <Button fx:id="btn_Registrarse" layoutX="450.0" layoutY="349.0" mnemonicParsing="false" onKeyPressed="#kRegistro" onMouseClicked="#click_Resgistrarse" text="Registrarse" />
       <DatePicker fx:id="fechaNacimiento" layoutX="53.0" layoutY="279.0" />
       <Label layoutX="53.0" layoutY="261.0" text="Fecha de Nacimiento" />
       <TextField fx:id="verContra2" layoutX="53.0" layoutY="218.0" />
-      <PasswordField fx:id="campoContra2" layoutX="53.0" layoutY="218.0" />
+      <PasswordField fx:id="campoContra2" layoutX="53.0" layoutY="218.0" onKeyPressed="#cambioCampo" />
       <Label layoutX="53.0" layoutY="200.0" text="Confirmar contraseña" />
-      <Button fx:id="btn_seleccionarImagen" layoutX="428.0" layoutY="218.0" mnemonicParsing="false" onAction="#pulsadoImagen" text="Seleccionar imagen" />
+      <Button fx:id="btn_seleccionarImagen" layoutX="428.0" layoutY="218.0" mnemonicParsing="false" onAction="#pulsadoImagen" onKeyPressed="#cambioCampo" text="Seleccionar imagen" />
       <Line endX="21.4000244140625" endY="273.0" layoutX="357.0" layoutY="127.0" startX="21.4000244140625" startY="-127.0" />
       <ImageView fx:id="ojo1" fitHeight="80.0" fitWidth="27.0" layoutX="202.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
          <image>
