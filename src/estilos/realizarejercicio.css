@@ -2,6 +2,7 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
-
+.list-view .scroll-bar:horizontal
+{
+    -fx-scale-x: 100;
 }

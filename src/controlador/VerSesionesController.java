@@ -39,8 +39,6 @@ public class VerSesionesController implements Initializable {
     @FXML
     private TableView<Session> tableView_Sesiones;
     @FXML
-    private TableColumn<Session, String> colSesion;
-    @FXML
     private TableColumn<Session, Integer> colAcertadas;
     @FXML
     private TableColumn<Session, Integer> colFalladas;
@@ -62,15 +60,20 @@ public class VerSesionesController implements Initializable {
         // TODO
         
 
-    }    
+    }
+    
 
-    public void getSesionUser() 
+    public void getSesionUser(List<Session> list) 
     {
+        colFecha.setCellValueFactory(
+            new PropertyValueFactory<>("timeStamp"));
+        colAcertadas.setCellValueFactory(
+            new PropertyValueFactory<>("hits"));
+        colFalladas.setCellValueFactory(
+            new PropertyValueFactory<>("faults"));
         
-        
-        datos = FXCollections.observableList(usuario.getSessions()); 
+        datos = FXCollections.observableList(list); 
         tableView_Sesiones.setItems(datos);
-        //colAcertadas.cellFactoryProperty(new PropertyValueFactory<Session, int>("hints"));
     }
     
     @FXML

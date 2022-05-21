@@ -146,7 +146,7 @@ public class MenuController implements Initializable {
             verSesiones.navegacion = this.navegacion;
             verSesiones.usuario = this.usuario;
             
-            verSesiones.getSesionUser();
+            verSesiones.getSesionUser(usuario.getSessions());
             
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
