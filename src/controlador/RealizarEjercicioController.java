@@ -87,11 +87,18 @@ public class RealizarEjercicioController implements Initializable {
         {
             FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/CartaNautica.fxml"));
             Parent root1= (Parent)fxmlLoaderMenu.load();
-            CartaNauticaController rartaNautica = (CartaNauticaController) fxmlLoaderMenu.getController();
+            CartaNauticaController cartaNautica = (CartaNauticaController) fxmlLoaderMenu.getController();
             
-            rartaNautica.usuario = this.usuario;
-            rartaNautica.sesion = this.sesion;
-            rartaNautica.navegacion = this.navegacion;
+            cartaNautica.usuario = this.usuario;
+            cartaNautica.sesion = this.sesion;
+            cartaNautica.navegacion = this.navegacion;
+            
+            Problem problema = list_problemas.getSelectionModel().getSelectedItem();
+            cartaNautica.problema = problema;
+            cartaNautica.txt_enunciado.setText(problema.getText());
+            var datos = FXCollections.observableList(problema.getAnswers());
+            cartaNautica.list_answers.setItems(datos);
+            
            
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));

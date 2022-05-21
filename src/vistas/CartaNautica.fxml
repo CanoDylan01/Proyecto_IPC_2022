@@ -20,6 +20,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
 
 <VBox styleClass="vBox" stylesheets="@../estilos/cartaNautica.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CartaNauticaController">
    <children>
@@ -57,7 +58,12 @@
       </HBox>
       <SplitPane dividerPositions="0.4431438127090301" VBox.vgrow="ALWAYS">
          <items>
-            <ListView fx:id="map_listview" onMouseClicked="#listClicked" prefHeight="399.0" prefWidth="87.0" />
+            <VBox prefHeight="200.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
+               <children>
+                  <Text fx:id="txt_enunciado" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="370.50236320495605" VBox.vgrow="SOMETIMES" />
+                  <ListView fx:id="list_answers" onMouseClicked="#listClicked" prefHeight="399.0" prefWidth="87.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
             <ScrollPane fx:id="map_scrollpane" hbarPolicy="ALWAYS" onMouseMoved="#muestraPosicion" pannable="true" prefHeight="398.0" prefWidth="358.0" vbarPolicy="ALWAYS">
                <content>
                   <Pane>
@@ -91,40 +97,48 @@
             </ScrollPane>
          </items>
       </SplitPane>
-      <HBox alignment="CENTER_RIGHT">
+      <HBox alignment="CENTER_RIGHT" prefWidth="810.0">
          <children>
-            <Button fx:id="btn_volver" mnemonicParsing="false" onMouseClicked="#click_volver" text="Volver">
-               <HBox.margin>
-                  <Insets right="200.0" />
-               </HBox.margin>
-               <cursor>
-                  <Cursor fx:constant="DEFAULT" />
-               </cursor>
-            </Button>
-            <Button fx:id="btn_mover" mnemonicParsing="false" onMouseClicked="#cambia_mover" text="Mover">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btn_linea" mnemonicParsing="false" onMouseClicked="#cambia_linea" text="Linea">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btn_circulo" mnemonicParsing="false" onMouseClicked="#cambia_circulo" text="Circulo">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="btn_texto" mnemonicParsing="false" onMouseClicked="#cambia_texto" text="Texto">
-               <HBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </HBox.margin>
-            </Button>
-            <Label fx:id="posicion" minHeight="-Infinity" minWidth="-Infinity" text="SceneX:     ScenY:     " wrapText="true" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="NEVER">
+               <children>
+                  <Button fx:id="btn_volver" mnemonicParsing="false" onMouseClicked="#click_volver" text="Volver" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button fx:id="btn_mover" mnemonicParsing="false" onMouseClicked="#cambia_mover" text="Mover">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btn_linea" mnemonicParsing="false" onMouseClicked="#cambia_linea" text="Linea">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btn_circulo" mnemonicParsing="false" onMouseClicked="#cambia_circulo" text="Circulo">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="btn_texto" mnemonicParsing="false" onMouseClicked="#cambia_texto" text="Texto">
+                     <HBox.margin>
+                        <Insets left="20.0" right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Label fx:id="posicion" minHeight="-Infinity" minWidth="-Infinity" text="SceneX:     ScenY:     " wrapText="true" HBox.hgrow="ALWAYS" />
+               </children>
+            </HBox>
          </children>
          <VBox.margin>
-            <Insets bottom="12.0" right="12.0" top="6.0" />
+            <Insets right="6.0" top="6.0" />
          </VBox.margin>
       </HBox>
    </children>

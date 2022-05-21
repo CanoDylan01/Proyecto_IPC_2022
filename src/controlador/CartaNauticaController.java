@@ -42,8 +42,10 @@ import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import model.Answer;
 import modelos.Poi;
 import model.Navegacion;
+import model.Problem;
 import model.Session;
 import model.User;
 
@@ -62,7 +64,6 @@ public class CartaNauticaController implements Initializable {
     // el escalado se realiza sobre este nodo, al escalar el Group no mueve sus nodo
     private Group zoomGroup;
 
-    @FXML
     private ListView<Poi> map_listview;
     @FXML
     private ScrollPane map_scrollpane;
@@ -98,6 +99,8 @@ public class CartaNauticaController implements Initializable {
     
     public Session sesion;
     
+    public Problem problema;
+    
     Line linePainting;    
     
     @FXML
@@ -105,6 +108,10 @@ public class CartaNauticaController implements Initializable {
     double inicioXArc;
     
     TextField textoPainting;
+    @FXML
+    public Text txt_enunciado;
+    @FXML
+    public ListView<Answer> list_answers;
 
     public enum OpcionCursor {MOVER, LINEA, CIRCULO, TEXTO};
     OpcionCursor cursor = OpcionCursor.MOVER;
@@ -176,7 +183,7 @@ public class CartaNauticaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        initData();
+        //initData();
         //==========================================================
         // inicializamos el slider y enlazamos con el zoom
         zoom_slider.setMin(0.2);

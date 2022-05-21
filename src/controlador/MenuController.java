@@ -93,6 +93,7 @@ public class MenuController implements Initializable {
             var datos = FXCollections.observableList(navegacion.getProblems());
             realizarEjercicio.list_problemas.setItems(datos);
             
+            
             sesion = new Session( LocalDateTime.now(), 3, 1);
             usuario.addSession(sesion);
 
