@@ -5,8 +5,10 @@
  */
 package controlador;
 
+import DBAccess.NavegacionDAOException;
 import com.sun.glass.ui.Cursor;
 import java.net.URL;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -112,9 +114,14 @@ public class CartaNauticaController implements Initializable {
     public Text txt_enunciado;
     @FXML
     public ListView<Answer> list_answers;
+    @FXML
+    private Button btn_responder;
 
     public enum OpcionCursor {MOVER, LINEA, CIRCULO, TEXTO};
     OpcionCursor cursor = OpcionCursor.MOVER;
+    
+    public int aciertos;
+    public int fallos;
 
 
     @FXML
@@ -230,6 +237,8 @@ public class CartaNauticaController implements Initializable {
             MenuController menu = (MenuController) fxmlLoaderMenu.getController();
             menu.navegacion = this.navegacion;
             menu.usuario = this.usuario;
+            menu.aciertos = this.aciertos;
+            menu.fallos = this.fallos;
             
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
@@ -348,8 +357,12 @@ public class CartaNauticaController implements Initializable {
     }
 
     @FXML
-    private void cerrarSesion(ActionEvent event) {
+    private void cerrarSesion(ActionEvent event) throws NavegacionDAOException {
+        sesion = new Session(LocalDateTime.now(), aciertos, fallos);
+        usuario.addSession(sesion);
         usuario = null;
+        aciertos = 0;
+        fallos = 0;
         
         try 
         {
@@ -388,5 +401,28 @@ public class CartaNauticaController implements Initializable {
         cursor = OpcionCursor.TEXTO;
     }
     
-
+    @FXML
+    private void click_responder(MouseEvent event) {
+        Answer respuesta = list_answers.getSelectionModel().getSelectedItem();
+        if(respuesta.getValidity()) 
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Enhorabuena!");
+            alert.setContentText("Has acertado el problema!");   
+            ++aciertos;
+            
+            alert.showAndWait();
+        }
+        else 
+        {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Qué pena!!");
+            alert.setContentText("Has fallado el problema!");
+            ++fallos;
+            
+            alert.showAndWait();
+        }
+    }
 }

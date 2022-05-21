@@ -109,6 +109,10 @@
                         <Cursor fx:constant="DEFAULT" />
                      </cursor>
                   </Button>
+                  <Button fx:id="btn_responder" mnemonicParsing="false" onMouseClicked="#click_responder" text="Responder">
+                     <HBox.margin>
+                        <Insets left="25.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
             <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">

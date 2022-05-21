@@ -46,6 +46,9 @@ public class RealizarEjercicioController implements Initializable {
     public Session sesion;
     public Navegacion navegacion;
     
+    public int aciertos;
+    public int fallos;
+    
     public ObservableList<Problem> datos = null;
 
     /**
@@ -69,6 +72,8 @@ public class RealizarEjercicioController implements Initializable {
             menu.usuario = this.usuario;
             menu.navegacion = this.navegacion;
             menu.sesion = this.sesion;
+            menu.aciertos = this.aciertos;
+            menu.fallos = this.fallos;
             
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
@@ -92,6 +97,8 @@ public class RealizarEjercicioController implements Initializable {
             cartaNautica.usuario = this.usuario;
             cartaNautica.sesion = this.sesion;
             cartaNautica.navegacion = this.navegacion;
+            cartaNautica.aciertos = this.aciertos;
+            cartaNautica.fallos = this.fallos;
             
             Problem problema = list_problemas.getSelectionModel().getSelectedItem();
             cartaNautica.problema = problema;

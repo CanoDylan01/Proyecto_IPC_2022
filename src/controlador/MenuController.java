@@ -46,6 +46,9 @@ public class MenuController implements Initializable {
     public User usuario;
     
     public Session sesion;
+    
+    public int aciertos;
+    public int fallos;
 
 
 
@@ -69,6 +72,10 @@ public class MenuController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.setTitle("Menu");
             stage.centerOnScreen();
+            
+            sesion = new Session(LocalDateTime.now(), aciertos, fallos);
+            usuario.addSession(sesion);
+            usuario = null;
             stage.show();
             
             ((Stage)btn_volver.getScene().getWindow()).close();
@@ -87,16 +94,13 @@ public class MenuController implements Initializable {
             realizarEjercicio.usuario = this.usuario;
             realizarEjercicio.sesion = this.sesion;
             realizarEjercicio.navegacion = this.navegacion;
+            realizarEjercicio.aciertos = this.aciertos;
+            realizarEjercicio.fallos = this.fallos;
             
             realizarEjercicio.disableButtons();
              
             var datos = FXCollections.observableList(navegacion.getProblems());
             realizarEjercicio.list_problemas.setItems(datos);
-            
-            
-            sesion = new Session( LocalDateTime.now(), 3, 1);
-            usuario.addSession(sesion);
-
 
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
