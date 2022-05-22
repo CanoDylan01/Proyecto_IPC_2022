@@ -15,6 +15,15 @@
 .root {
     -fx-background-image: url(../resources/fondo.jpg);
     -fx-background-repeat: no-repeat;
-    -fx-background-position: center center;
     -fx-background-size: cover;
+}
+.label{
+    -fx-text-fill: black;
+}
+#principal {
+    -fx-background-color: rgba(220,220,220,0.5);
+    -fx-background-radius: 25px;
+}
+.myLink {
+    -fx-text-fill: black;
 }

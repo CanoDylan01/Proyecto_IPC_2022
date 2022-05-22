@@ -8,47 +8,65 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistroController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="606.0" prefWidth="844.0" stylesheets="@../estilos/registro.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RegistroController">
    <children>
-      <TextField fx:id="campoUsuario" layoutX="53.0" layoutY="54.0" onKeyPressed="#cambioCampo" />
-      <TextField fx:id="campoCorreo" layoutX="53.0" layoutY="114.0" onKeyPressed="#cambioCampo" />
-      <TextField fx:id="verContra1" layoutX="53.0" layoutY="166.0" />
-      <PasswordField fx:id="campoContra1" layoutX="53.0" layoutY="166.0" onKeyPressed="#cambioCampo" />
-      <Label layoutX="53.0" layoutY="36.0" text="Usuario" />
-      <Label layoutX="53.0" layoutY="148.0" text="Contraseña" />
-      <Label layoutX="53.0" layoutY="89.0" text="Correo" />
-      <ImageView fx:id="avatar" fitHeight="170.0" fitWidth="164.0" layoutX="418.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../avatars/default.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="btn_Volver" layoutX="29.0" layoutY="336.0" mnemonicParsing="false" onKeyPressed="#kVolver" onMouseClicked="#click_Volver" text="Volver" />
-      <Button fx:id="btn_Registrarse" layoutX="450.0" layoutY="349.0" mnemonicParsing="false" onKeyPressed="#kRegistro" onMouseClicked="#click_Resgistrarse" text="Registrarse" />
-      <DatePicker fx:id="fechaNacimiento" layoutX="53.0" layoutY="279.0" />
-      <Label layoutX="53.0" layoutY="261.0" text="Fecha de Nacimiento" />
-      <TextField fx:id="verContra2" layoutX="53.0" layoutY="218.0" />
-      <PasswordField fx:id="campoContra2" layoutX="53.0" layoutY="218.0" onKeyPressed="#cambioCampo" />
-      <Label layoutX="53.0" layoutY="200.0" text="Confirmar contraseña" />
-      <Button fx:id="btn_seleccionarImagen" layoutX="428.0" layoutY="218.0" mnemonicParsing="false" onAction="#pulsadoImagen" onKeyPressed="#cambioCampo" text="Seleccionar imagen" />
-      <Line endX="21.4000244140625" endY="273.0" layoutX="357.0" layoutY="127.0" startX="21.4000244140625" startY="-127.0" />
-      <ImageView fx:id="ojo1" fitHeight="80.0" fitWidth="27.0" layoutX="202.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/n.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="showPass" layoutX="202.0" layoutY="167.0" mnemonicParsing="false" onMousePressed="#showPass1" onMouseReleased="#hidePass1" opacity="0.0" prefHeight="23.0" prefWidth="27.0">
-         <font>
-            <Font size="10.0" />
-         </font>
-      </Button>
-      <ImageView fx:id="ojo2" fitHeight="80.0" fitWidth="27.0" layoutX="202.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../resources/n.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="showPass2" layoutX="202.0" layoutY="218.0" mnemonicParsing="false" onMousePressed="#showPass2" onMouseReleased="#hidePass2" opacity="0.0" prefHeight="26.0" prefWidth="27.0" />
+      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="NEVER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="NEVER">
+               <children>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="principal">
+                     <children>
+                        <TextField fx:id="campoUsuario" layoutX="53.0" layoutY="54.0" onKeyPressed="#cambioCampo" />
+                        <TextField fx:id="campoCorreo" layoutX="53.0" layoutY="114.0" onKeyPressed="#cambioCampo" />
+                        <TextField fx:id="verContra1" layoutX="53.0" layoutY="166.0" />
+                        <PasswordField fx:id="campoContra1" layoutX="53.0" layoutY="166.0" onKeyPressed="#cambioCampo" />
+                        <Label layoutX="53.0" layoutY="36.0" text="Usuario" />
+                        <Label layoutX="53.0" layoutY="148.0" text="Contraseña" />
+                        <Label layoutX="53.0" layoutY="89.0" text="Correo" />
+                        <ImageView fx:id="avatar" fitHeight="170.0" fitWidth="164.0" layoutX="418.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../avatars/default.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btn_Volver" layoutX="29.0" layoutY="336.0" mnemonicParsing="false" onKeyPressed="#kVolver" onMouseClicked="#click_Volver" text="Volver" />
+                        <Button fx:id="btn_Registrarse" layoutX="450.0" layoutY="349.0" mnemonicParsing="false" onKeyPressed="#kRegistro" onMouseClicked="#click_Resgistrarse" text="Registrarse" />
+                        <DatePicker fx:id="fechaNacimiento" layoutX="53.0" layoutY="279.0" />
+                        <Label layoutX="53.0" layoutY="261.0" text="Fecha de Nacimiento" />
+                        <TextField fx:id="verContra2" layoutX="53.0" layoutY="218.0" />
+                        <PasswordField fx:id="campoContra2" layoutX="53.0" layoutY="218.0" onKeyPressed="#cambioCampo" />
+                        <Label layoutX="53.0" layoutY="200.0" text="Confirmar contraseña" />
+                        <Button fx:id="btn_seleccionarImagen" layoutX="428.0" layoutY="218.0" mnemonicParsing="false" onAction="#pulsadoImagen" onKeyPressed="#cambioCampo" text="Seleccionar imagen" />
+                        <Line endX="21.4000244140625" endY="273.0" layoutX="357.0" layoutY="127.0" startX="21.4000244140625" startY="-127.0" />
+                        <ImageView fx:id="ojo1" fitHeight="80.0" fitWidth="27.0" layoutX="202.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/n.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="showPass" layoutX="202.0" layoutY="167.0" mnemonicParsing="false" onMousePressed="#showPass1" onMouseReleased="#hidePass1" opacity="0.0" prefHeight="23.0" prefWidth="27.0">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <ImageView fx:id="ojo2" fitHeight="80.0" fitWidth="27.0" layoutX="202.0" layoutY="217.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../resources/n.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="showPass2" layoutX="202.0" layoutY="218.0" mnemonicParsing="false" onMousePressed="#showPass2" onMouseReleased="#hidePass2" opacity="0.0" prefHeight="26.0" prefWidth="27.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
    </children>
-</AnchorPane>
+</HBox>
