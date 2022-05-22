@@ -11,7 +11,7 @@
       <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
       <VBox alignment="CENTER" prefHeight="400.0" prefWidth="455.0" HBox.hgrow="NEVER">
          <children>
-            <Button fx:id="btn_practica" mnemonicParsing="false" onMouseClicked="#pulsadoPracticar" prefHeight="42.0" prefWidth="150.0" text="Practicar">
+            <Button fx:id="btn_practica" mnemonicParsing="false" onAction="#pulsadoPracticar" prefHeight="42.0" prefWidth="150.0" text="Practicar">
                <font>
                   <Font size="18.0" />
                </font>
@@ -19,7 +19,7 @@
                   <Insets bottom="35.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btn_verSesiones" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#click_verSesiones" prefHeight="42.0" prefWidth="150.0" text="Ver Sesiones">
+            <Button fx:id="btn_verSesiones" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#click_verSesiones" prefHeight="42.0" prefWidth="150.0" text="Ver Sesiones">
                <font>
                   <Font size="18.0" />
                </font>
@@ -35,7 +35,7 @@
                   <Insets bottom="35.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btn_volver" mnemonicParsing="false" onMouseClicked="#pulsadoVolver" prefHeight="42.0" prefWidth="150.0" text="Cerrar Sesión">
+            <Button fx:id="btn_volver" mnemonicParsing="false" onAction="#pulsadoVolver" prefHeight="42.0" prefWidth="150.0" text="Cerrar Sesión">
                <font>
                   <Font size="18.0" />
                </font>

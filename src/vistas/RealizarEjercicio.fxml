@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../estilos/realizarejercicio.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RealizarEjercicioController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../estilos/realizarejercicio.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.RealizarEjercicioController">
    <children>
       <HBox minHeight="60.0" minWidth="200.0" prefHeight="60.0" prefWidth="600.0" VBox.vgrow="NEVER">
          <children>
@@ -31,7 +31,7 @@
          <children>
             <VBox alignment="CENTER_LEFT" prefHeight="120.0" prefWidth="303.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Button fx:id="btn_volver" mnemonicParsing="false" onMouseClicked="#click_volver" text="Volver">
+                  <Button fx:id="btn_volver" mnemonicParsing="false" onAction="#click_volver" text="Volver">
                      <VBox.margin>
                         <Insets left="30.0" />
                      </VBox.margin>
@@ -40,12 +40,12 @@
             </VBox>
             <VBox alignment="CENTER_RIGHT" prefHeight="104.0" prefWidth="298.0">
                <children>
-                  <Button fx:id="btn_realizarEjercicio" mnemonicParsing="false" onMouseClicked="#click_realizarEjercicio" text="Realizar Ejercicio">
+                  <Button fx:id="btn_realizarEjercicio" mnemonicParsing="false" onAction="#click_realizarEjercicio" text="Realizar Ejercicio">
                      <VBox.margin>
                         <Insets right="30.0" />
                      </VBox.margin>
                   </Button>
-                  <Button fx:id="btn_aleatorio" mnemonicParsing="false" onMouseClicked="#click_ejercicioAleatorio" text="Aleatorio">
+                  <Button fx:id="btn_aleatorio" mnemonicParsing="false" onAction="#click_ejercicioAleatorio" text="Aleatorio">
                      <VBox.margin>
                         <Insets right="30.0" top="20.0" />
                      </VBox.margin>
