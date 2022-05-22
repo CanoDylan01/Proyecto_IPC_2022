@@ -102,6 +102,8 @@ public class ModPerfilController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.setTitle("Menu");
             stage.centerOnScreen();
+            stage.setWidth(1000);
+            stage.setHeight(650);
             stage.show();
             
             ((Stage)btn_Volver.getScene().getWindow()).close();
@@ -166,6 +168,8 @@ public class ModPerfilController implements Initializable {
                     stage.setScene(new Scene(root1));
                     stage.setTitle("Menu");
                     stage.centerOnScreen();
+                    stage.setWidth(1000);
+                    stage.setHeight(650);
                     stage.show();
 
                     ((Stage)btn_Volver.getScene().getWindow()).close();

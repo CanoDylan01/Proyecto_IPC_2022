@@ -106,6 +106,8 @@ public class MenuController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.setTitle("Elección de ejercicios");
             stage.centerOnScreen();
+            stage.setWidth(1000);
+            stage.setHeight(650);
             stage.show();
             
             ((Stage)btn_practica.getScene().getWindow()).close();
@@ -134,6 +136,8 @@ public class MenuController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.setTitle("Práctica");
             stage.centerOnScreen();
+            stage.setWidth(1000);
+            stage.setHeight(650);
             stage.show();
             
             ((Stage)btn_Modificar.getScene().getWindow()).close();
@@ -157,6 +161,8 @@ public class MenuController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.setTitle("Ver Sesiones");
             stage.centerOnScreen();
+            stage.setWidth(1000);
+            stage.setHeight(650);
             stage.show();
             
             ((Stage)btn_verSesiones.getScene().getWindow()).close();

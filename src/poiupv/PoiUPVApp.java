@@ -23,6 +23,8 @@ public class PoiUPVApp extends Application {
         
         Scene scene = new Scene(root);
         stage.setTitle("Inicio de Sesión");
+        stage.setWidth(1000);
+        stage.setHeight(650);
         stage.setScene(scene);
         stage.show();
     }

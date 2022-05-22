@@ -79,6 +79,8 @@ public class RealizarEjercicioController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.setTitle("Menu");
             stage.centerOnScreen();
+            stage.setWidth(1000);
+            stage.setHeight(650);
             stage.show();
             
             ((Stage)btn_volver.getScene().getWindow()).close();
@@ -110,8 +112,8 @@ public class RealizarEjercicioController implements Initializable {
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
             stage.setTitle("Carta Náutica");
-            stage.setWidth(1200);
-            stage.setHeight(700);
+            stage.setWidth(1000);
+            stage.setHeight(650);
             stage.centerOnScreen();
             stage.show();
             
