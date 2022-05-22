@@ -16,6 +16,8 @@ import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,6 +38,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,6 +47,8 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
@@ -113,6 +119,8 @@ public class CartaNauticaController implements Initializable {
     Circle circlePainting;
     double inicioXArc;
     
+    Arc arcPainting;
+    
     TextField textoPainting;
     @FXML
     public Text txt_enunciado;
@@ -123,8 +131,11 @@ public class CartaNauticaController implements Initializable {
     @FXML
     private ColorPicker colorPicker;
     @FXML
-    private ChoiceBox<Double> cb_selectorGrosor;
-    public double grosor;
+    private Spinner<Double> spinner;
+    public double grosor = 1;
+    @FXML
+    private MenuItem menuItem_borrar;
+
 
     public enum OpcionCursor {MOVER, LINEA, CIRCULO, TEXTO};
     OpcionCursor cursor = OpcionCursor.MOVER;
@@ -200,6 +211,18 @@ public class CartaNauticaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         //initData();
+        SpinnerValueFactory<Double> valueFactory = 
+                new SpinnerValueFactory.DoubleSpinnerValueFactory(1,10);
+        valueFactory.setValue(1.0);
+        spinner.setValueFactory(valueFactory);
+        spinner.valueProperty().addListener(new ChangeListener<Double>(){
+
+            @Override
+            public void changed(ObservableValue<? extends Double> arg0, Double arg1, Double arg2) {
+                grosor = spinner.getValue();
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
         //==========================================================
         // inicializamos el slider y enlazamos con el zoom
         zoom_slider.setMin(0.2);
@@ -322,16 +345,35 @@ public class CartaNauticaController implements Initializable {
             case LINEA:
                 linePainting = new Line(event.getX(), event.getY(), event.getX(), event.getY());
                 linePainting.setStroke(colorPicker.getValue());
-                //linePainting.setStrokeWidth(chooseGrosor());
+                linePainting.setStrokeWidth(grosor);
                 linePainting.fillProperty();
                 zoomGroup.getChildren().add(linePainting);
+                
+                linePainting.setOnContextMenuRequested(e -> {
+                    ContextMenu menuContext = new ContextMenu();
+                    MenuItem borrarItem = new MenuItem("Eliminar");
+                    menuContext.getItems().add(borrarItem);
+                    borrarItem.setOnAction(ev -> {
+                        zoomGroup.getChildren().remove((Node)e.getSource());
+                        ev.consume();
+                    });
+                    menuContext.show(linePainting, event.getX(), event.getY());
+                    e.consume();
+                });
                 break;
                 
             case CIRCULO:
+                //arcPainting = new Arc();
+                //arcPainting.setStroke(colorPicker.getValue());
+                //arcPainting.setStrokeWidth(grosor);
+                //arcPainting.setFill(Color.TRANSPARENT);
+                //arcPainting.setType(ArcType.OPEN);
+                
                 circlePainting = new Circle(1);
                 circlePainting.setStroke(colorPicker.getValue());
-                circlePainting.setStrokeWidth(2);
+                circlePainting.setStrokeWidth(grosor);
                 circlePainting.setFill(Color.TRANSPARENT);
+                
                 zoomGroup.getChildren().add(circlePainting);
                 circlePainting.setCenterX(event.getX());
                 circlePainting.setCenterY(event.getY());
@@ -349,7 +391,7 @@ public class CartaNauticaController implements Initializable {
                     textoT.setX(textoPainting.getLayoutX());
                     textoT.setY(textoPainting.getLayoutY());
                     textoT.setStyle("-fx-font-family: Gafata; -fx-font-size: 40;");
-                    textoT.setStroke(colorPicker.getValue());
+                    textoT.setFill(colorPicker.getValue());
                     zoomGroup.getChildren().add(textoT);
                     zoomGroup.getChildren().remove(textoPainting);
                     e.consume();
@@ -442,6 +484,13 @@ public class CartaNauticaController implements Initializable {
         }
     }
     
+    @FXML
+    private void borrarDibujo(ActionEvent event) {
+        zoomGroup.getChildren().remove(linePainting);
+        zoomGroup.getChildren().remove(circlePainting);
+        zoomGroup.getChildren().remove(textoPainting);
+    }
+    
     private void registerSession() throws NavegacionDAOException 
     {
         if(aciertos != 0 || fallos != 0) 
@@ -452,15 +501,5 @@ public class CartaNauticaController implements Initializable {
             aciertos = 0;
             fallos = 0;
         }   
-    }
-    
-    private double chooseGrosor() 
-    {
-        //final Double[] grosor = new Double[]{1.0, 2.0,3.0};
-        
-        cb_selectorGrosor = new ChoiceBox<>(FXCollections.observableArrayList(
-                1.0, 2.0, 3.0
-        ));
-        return grosor = cb_selectorGrosor.getSelectionModel().getSelectedItem();
     }
 }
