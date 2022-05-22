@@ -4,6 +4,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
@@ -13,12 +15,14 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
@@ -46,6 +50,19 @@
                 </Menu>
               </menus>
             </MenuBar>
+            <ToolBar nodeOrientation="LEFT_TO_RIGHT" prefHeight="7.0" prefWidth="278.0" HBox.hgrow="NEVER">
+              <items>
+                  <ColorPicker fx:id="colorPicker" editable="true" prefWidth="125.0" promptText="Elegir Color">
+                     <value>
+                        <Color />
+                     </value>
+                  </ColorPicker>
+                  <ChoiceBox fx:id="cb_selectorGrosor" prefWidth="125.0" />
+              </items>
+               <HBox.margin>
+                  <Insets left="20.0" />
+               </HBox.margin>
+            </ToolBar>
             <Region HBox.hgrow="ALWAYS" />
             <Label text="Zoom" />
             <Button mnemonicParsing="false" onAction="#zoomOut" text="-" />
@@ -60,7 +77,7 @@
          <items>
             <VBox prefHeight="200.0" prefWidth="100.0" SplitPane.resizableWithParent="false">
                <children>
-                  <Text fx:id="txt_enunciado" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="370.50236320495605" VBox.vgrow="SOMETIMES" />
+                  <Text fx:id="txt_enunciado" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="322.50236320495605" VBox.vgrow="SOMETIMES" />
                   <ListView fx:id="list_answers" onMouseClicked="#listClicked" prefHeight="399.0" prefWidth="87.0" VBox.vgrow="ALWAYS" />
                </children>
             </VBox>

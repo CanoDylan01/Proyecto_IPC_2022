@@ -16,6 +16,7 @@ import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +27,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -34,6 +37,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
@@ -116,6 +120,11 @@ public class CartaNauticaController implements Initializable {
     public ListView<Answer> list_answers;
     @FXML
     private Button btn_responder;
+    @FXML
+    private ColorPicker colorPicker;
+    @FXML
+    private ChoiceBox<Double> cb_selectorGrosor;
+    public double grosor;
 
     public enum OpcionCursor {MOVER, LINEA, CIRCULO, TEXTO};
     OpcionCursor cursor = OpcionCursor.MOVER;
@@ -123,7 +132,7 @@ public class CartaNauticaController implements Initializable {
     public int aciertos;
     public int fallos;
 
-
+    
     @FXML
     void zoomIn(ActionEvent event) {
         //================================================
@@ -248,6 +257,7 @@ public class CartaNauticaController implements Initializable {
             stage.centerOnScreen();
             stage.setWidth(1000);
             stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
                 
             ((Stage)btn_volver.getScene().getWindow()).close();
@@ -311,13 +321,15 @@ public class CartaNauticaController implements Initializable {
                 
             case LINEA:
                 linePainting = new Line(event.getX(), event.getY(), event.getX(), event.getY());
+                linePainting.setStroke(colorPicker.getValue());
+                //linePainting.setStrokeWidth(chooseGrosor());
                 linePainting.fillProperty();
                 zoomGroup.getChildren().add(linePainting);
                 break;
                 
             case CIRCULO:
                 circlePainting = new Circle(1);
-                circlePainting.setStroke(Color.RED);
+                circlePainting.setStroke(colorPicker.getValue());
                 circlePainting.setStrokeWidth(2);
                 circlePainting.setFill(Color.TRANSPARENT);
                 zoomGroup.getChildren().add(circlePainting);
@@ -337,6 +349,7 @@ public class CartaNauticaController implements Initializable {
                     textoT.setX(textoPainting.getLayoutX());
                     textoT.setY(textoPainting.getLayoutY());
                     textoT.setStyle("-fx-font-family: Gafata; -fx-font-size: 40;");
+                    textoT.setStroke(colorPicker.getValue());
                     zoomGroup.getChildren().add(textoT);
                     zoomGroup.getChildren().remove(textoPainting);
                     e.consume();
@@ -375,6 +388,7 @@ public class CartaNauticaController implements Initializable {
             stage.centerOnScreen();
             stage.setWidth(1000);
             stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
                 
             ((Stage)btn_volver.getScene().getWindow()).close();
@@ -438,5 +452,15 @@ public class CartaNauticaController implements Initializable {
             aciertos = 0;
             fallos = 0;
         }   
+    }
+    
+    private double chooseGrosor() 
+    {
+        //final Double[] grosor = new Double[]{1.0, 2.0,3.0};
+        
+        cb_selectorGrosor = new ChoiceBox<>(FXCollections.observableArrayList(
+                1.0, 2.0, 3.0
+        ));
+        return grosor = cb_selectorGrosor.getSelectionModel().getSelectedItem();
     }
 }

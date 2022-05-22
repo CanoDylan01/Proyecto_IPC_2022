@@ -290,6 +290,7 @@ public class RegistroController implements Initializable {
                     stage.centerOnScreen();
                     stage.setWidth(1000);
                     stage.setHeight(650);
+                    stage.getIcons().add(new Image("/resources/icon-96px.png"));
                     stage.show();
 
                     ((Stage)btn_Registrarse.getScene().getWindow()).close();
@@ -314,6 +315,7 @@ public class RegistroController implements Initializable {
             stage.centerOnScreen();
             stage.setWidth(1000);
             stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
             
             ((Stage)btn_Volver.getScene().getWindow()).close();

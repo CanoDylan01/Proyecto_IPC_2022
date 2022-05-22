@@ -22,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import model.Navegacion;
 import model.Session;
@@ -96,6 +97,7 @@ public class LoginController implements Initializable {
                     stage.setWidth(1000);
                     stage.setHeight(650);
                     stage.centerOnScreen();
+                    stage.getIcons().add(new Image("/resources/icon-96px.png"));
                     stage.show();
 
                     ((Stage)btn_inisesion.getScene().getWindow()).close();
@@ -126,6 +128,7 @@ public class LoginController implements Initializable {
         stage.centerOnScreen();
         stage.setWidth(1000);
         stage.setHeight(650);
+        stage.getIcons().add(new Image("/resources/icon-96px.png"));
         stage.show();
 
         ((Stage)btn_inisesion.getScene().getWindow()).close();

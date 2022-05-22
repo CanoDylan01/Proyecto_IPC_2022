@@ -19,8 +19,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import model.Answer;
 import model.Navegacion;
 import model.Problem;
 import model.Session;
@@ -81,6 +84,7 @@ public class RealizarEjercicioController implements Initializable {
             stage.centerOnScreen();
             stage.setWidth(1000);
             stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
             
             ((Stage)btn_volver.getScene().getWindow()).close();
@@ -106,8 +110,7 @@ public class RealizarEjercicioController implements Initializable {
             cartaNautica.problema = problema;
             cartaNautica.txt_enunciado.setText(problema.getText());
             var datos = FXCollections.observableList(problema.getAnswers());
-            cartaNautica.list_answers.setItems(datos);
-            
+            cartaNautica.list_answers.setItems(datos); 
            
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
@@ -115,6 +118,7 @@ public class RealizarEjercicioController implements Initializable {
             stage.setWidth(1000);
             stage.setHeight(650);
             stage.centerOnScreen();
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
             
             ((Stage)btn_realizarEjercicio.getScene().getWindow()).close();

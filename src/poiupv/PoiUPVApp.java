@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -22,9 +23,10 @@ public class PoiUPVApp extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/vistas/Login.fxml"));
         
         Scene scene = new Scene(root);
-        stage.setTitle("Inicio de Sesión");
+        stage.setTitle("PIZARRA DE NAVEGACION APP");
         stage.setWidth(1000);
         stage.setHeight(650);
+        stage.getIcons().add(new Image("/resources/icon-96px.png"));
         stage.setScene(scene);
         stage.show();
     }
