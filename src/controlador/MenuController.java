@@ -72,6 +72,8 @@ public class MenuController implements Initializable {
             modPerfil.navegacion = this.navegacion;
             modPerfil.usuario = this.usuario;
             modPerfil.sesion = this.sesion;
+            modPerfil.aciertos = this.aciertos;
+            modPerfil.fallos = this.fallos;
             
             modPerfil.campoUsuario.setText(usuario.getNickName());
             modPerfil.campoContra1.setText(usuario.getPassword());
@@ -134,6 +136,8 @@ public class MenuController implements Initializable {
             VerSesionesController verSesiones = (VerSesionesController) fxmlLoaderMod.getController();
             verSesiones.navegacion = this.navegacion;
             verSesiones.usuario = this.usuario;
+            verSesiones.aciertos = this.aciertos;
+            verSesiones.fallos = this.fallos;
             
             verSesiones.getSesionUser(usuario.getSessions());
             
@@ -160,7 +164,7 @@ public class MenuController implements Initializable {
             LoginController login = (LoginController) fxmlLoaderMenu.getController();
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
-            stage.setTitle("Menu");
+            stage.setTitle("PIZARRA NAVEGACIÓN APP");
             stage.centerOnScreen();
             stage.setWidth(1000);
             stage.setHeight(650);

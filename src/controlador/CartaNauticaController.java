@@ -489,8 +489,36 @@ public class CartaNauticaController implements Initializable {
             alert.setTitle("Enhorabuena!");
             alert.setContentText("Has acertado el problema!");   
             ++aciertos;
-            
             alert.showAndWait();
+            
+            try 
+            {
+            
+                FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/RealizarEjercicio.fxml"));
+                Parent root1= (Parent)fxmlLoaderMenu.load();
+                RealizarEjercicioController realizarEjercicio = (RealizarEjercicioController) fxmlLoaderMenu.getController();
+                realizarEjercicio.navegacion = this.navegacion;
+                realizarEjercicio.usuario = this.usuario;
+                realizarEjercicio.aciertos = this.aciertos;
+                realizarEjercicio.fallos = this.fallos;
+
+                realizarEjercicio.disableButtons();
+
+                var datos = FXCollections.observableList(navegacion.getProblems());
+                realizarEjercicio.list_problemas.setItems(datos);
+
+                Stage stage= new Stage();
+                stage.setScene(new Scene(root1));
+                stage.setTitle("Realizar Ejercicio");
+                stage.centerOnScreen();
+                stage.setWidth(1000);
+                stage.setHeight(650);
+                stage.getIcons().add(new Image("/resources/icon-96px.png"));
+                stage.show();
+
+                ((Stage)btn_volver.getScene().getWindow()).close();
+            }
+            catch(Exception e) {System.out.print(e);}
         }
         else 
         {
@@ -499,9 +527,36 @@ public class CartaNauticaController implements Initializable {
             alert.setTitle("Qué pena!!");
             alert.setContentText("Has fallado el problema!");
             ++fallos;
-            
             alert.showAndWait();
             
+            try 
+            {
+            
+                FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/RealizarEjercicio.fxml"));
+                Parent root1= (Parent)fxmlLoaderMenu.load();
+                RealizarEjercicioController realizarEjercicio = (RealizarEjercicioController) fxmlLoaderMenu.getController();
+                realizarEjercicio.navegacion = this.navegacion;
+                realizarEjercicio.usuario = this.usuario;
+                realizarEjercicio.aciertos = this.aciertos;
+                realizarEjercicio.fallos = this.fallos;
+
+                realizarEjercicio.disableButtons();
+
+                var datos = FXCollections.observableList(navegacion.getProblems());
+                realizarEjercicio.list_problemas.setItems(datos);
+
+                Stage stage= new Stage();
+                stage.setScene(new Scene(root1));
+                stage.setTitle("Realizar Ejercicio");
+                stage.centerOnScreen();
+                stage.setWidth(1000);
+                stage.setHeight(650);
+                stage.getIcons().add(new Image("/resources/icon-96px.png"));
+                stage.show();
+
+                ((Stage)btn_volver.getScene().getWindow()).close();
+            }
+            catch(Exception e) {System.out.print(e);}
             
         }
     }
@@ -526,10 +581,11 @@ public class CartaNauticaController implements Initializable {
     class AnswerListCell extends ListCell<Answer>
     {
     @Override
-    protected void updateItem(Answer item, boolean empty)
-    { super.updateItem(item, empty); // Obligatoria esta llamada
-    if (item==null || empty) setText(null);
-    else setText(item.getText());
-    }
+        protected void updateItem(Answer item, boolean empty)
+        { 
+            super.updateItem(item, empty); // Obligatoria esta llamada
+            if (item==null || empty) setText(null);
+            else setText(item.getText());
+        }
     }
 }

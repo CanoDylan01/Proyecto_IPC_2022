@@ -53,6 +53,9 @@ public class VerSesionesController implements Initializable {
     public Session sesion;
     public User usuario;
     
+    public int aciertos;
+    public int fallos;
+    
 
     /**
      * Initializes the controller class.
@@ -87,6 +90,8 @@ public class VerSesionesController implements Initializable {
             MenuController menu = (MenuController) fxmlLoaderMenu.getController();
             menu.navegacion = this.navegacion;
             menu.usuario = this.usuario;
+            menu.aciertos = this.aciertos;
+            menu.fallos = this.fallos;
             
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));

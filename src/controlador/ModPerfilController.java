@@ -77,6 +77,9 @@ public class ModPerfilController implements Initializable {
     private ImageView ojo2;
     
     private LocalDate fecha;
+    
+    public int aciertos;
+    public int fallos;
 
     /**
      * Initializes the controller class.
@@ -97,6 +100,8 @@ public class ModPerfilController implements Initializable {
             menu.usuario = this.usuario;
             menu.navegacion = this.navegacion;
             menu.sesion = this.sesion;
+            menu.aciertos = this.aciertos;
+            menu.fallos = this.fallos;
             
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
