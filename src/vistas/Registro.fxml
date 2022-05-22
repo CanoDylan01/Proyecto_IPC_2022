@@ -35,7 +35,7 @@
                         <PasswordField fx:id="campoContra2" layoutX="53.0" layoutY="218.0" onKeyPressed="#cambioCampo" />
                         <Label layoutX="53.0" layoutY="261.0" text="Fecha de Nacimiento" />
                         <DatePicker fx:id="fechaNacimiento" layoutX="53.0" layoutY="279.0" />
-                        <Button fx:id="btn_seleccionarImagen" layoutX="428.0" layoutY="218.0" mnemonicParsing="false" onAction="#pulsadoImagen" onKeyPressed="#cambioCampo" text="Seleccionar imagen" />
+                        <Button fx:id="btn_seleccionarImagen" layoutX="428.0" layoutY="218.0" mnemonicParsing="false" onAction="#pulsadoImagen" text="Seleccionar imagen" />
                         <Button fx:id="btn_Registrarse" layoutX="450.0" layoutY="349.0" mnemonicParsing="false" onKeyPressed="#kRegistro" onMouseClicked="#click_Resgistrarse" text="Registrarse" />
                         <Button fx:id="btn_Volver" layoutX="49.0" layoutY="349.0" mnemonicParsing="false" onKeyPressed="#kVolver" onMouseClicked="#click_Volver" text="Volver" />
                         <ImageView fx:id="avatar" fitHeight="170.0" fitWidth="164.0" layoutX="418.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">

@@ -42,7 +42,7 @@
       </HBox>
       <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
          <children>
-            <TableView fx:id="tableView_Sesiones" prefHeight="223.0" prefWidth="600.0" HBox.hgrow="ALWAYS">
+            <TableView fx:id="tableView_Sesiones" prefHeight="223.0" prefWidth="600.0" styleClass="table-cell" HBox.hgrow="ALWAYS">
               <columns>
                   <TableColumn fx:id="colFecha" minWidth="0.0" prefWidth="93.60003662109375" text="Fecha" />
                 <TableColumn fx:id="colAcertadas" prefWidth="87.20001220703125" text="Acertadas" />

@@ -211,9 +211,6 @@ public class RegistroController implements Initializable {
             else { campoContra2.requestFocus(); }
         }
         else if (campoContra2.isFocused() || verContra2.isFocused()) {
-            btn_seleccionarImagen.requestFocus();
-        }
-        else if (btn_seleccionarImagen.isFocused()) {
             fechaNacimiento.requestFocus();
         }
         else { btn_Registrarse.requestFocus();}

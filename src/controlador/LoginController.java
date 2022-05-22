@@ -11,6 +11,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +24,8 @@ import javafx.scene.control.Hyperlink;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import model.Navegacion;
 import model.Session;
@@ -60,11 +63,6 @@ public class LoginController implements Initializable {
             Logger.getLogger(LoginController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }    
-
-    @FXML
-    private void ini_sesion(MouseEvent event) {
-        iniciarSesion();
-    }
 
     private void iniciarSesion() {
         if ("".equals(campoUsuario.getText()) || "".equals(campoPassword.getText())) 
@@ -114,9 +112,28 @@ public class LoginController implements Initializable {
             }
         }
     }  
+    
+    private void cambiaFoco() {
+        if (campoUsuario.isFocused()) {
+            campoPassword.requestFocus();
+        }
+        else {btn_inisesion.requestFocus(); }
+    }
 
     @FXML
-    private void click_Registro(MouseEvent event) throws IOException {
+    private void cambioCampo(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            cambiaFoco();
+        }
+    }
+
+    @FXML
+    private void ini_sesion(ActionEvent event) {
+        iniciarSesion();
+    }
+
+    @FXML
+    private void click_Registro(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoaderRegistro= new FXMLLoader(getClass().getResource("/vistas/Registro.fxml"));
         Parent root1= (Parent)fxmlLoaderRegistro.load();
         RegistroController registro = (RegistroController) fxmlLoaderRegistro.getController();
