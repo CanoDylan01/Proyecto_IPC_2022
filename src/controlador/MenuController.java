@@ -63,65 +63,6 @@ public class MenuController implements Initializable {
     }    
 
     @FXML
-    private void pulsadoVolver(MouseEvent event) {
-        try 
-        {
-            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Login.fxml"));
-            Parent root1= (Parent)fxmlLoaderMenu.load();
-            LoginController login = (LoginController) fxmlLoaderMenu.getController();
-            Stage stage= new Stage();
-            stage.setScene(new Scene(root1));
-            stage.setTitle("Menu");
-            stage.centerOnScreen();
-            stage.setWidth(1000);
-            stage.setHeight(650);
-            stage.getIcons().add(new Image("/resources/icon-96px.png"));
-            
-            sesion = new Session(LocalDateTime.now(), aciertos, fallos);
-            usuario.addSession(sesion);
-            usuario = null;
-            
-            stage.show();
-            
-            ((Stage)btn_volver.getScene().getWindow()).close();
-        }
-        catch(Exception e) {System.out.print(e);}
-        
-    }
-
-    @FXML
-    private void pulsadoPracticar(MouseEvent event) {
-        try 
-        {
-            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/RealizarEjercicio.fxml"));
-            Parent root1= (Parent)fxmlLoaderMenu.load();
-            RealizarEjercicioController realizarEjercicio = (RealizarEjercicioController) fxmlLoaderMenu.getController();
-            realizarEjercicio.usuario = this.usuario;
-            realizarEjercicio.sesion = this.sesion;
-            realizarEjercicio.navegacion = this.navegacion;
-            realizarEjercicio.aciertos = this.aciertos;
-            realizarEjercicio.fallos = this.fallos;
-            
-            realizarEjercicio.disableButtons();
-             
-            var datos = FXCollections.observableList(navegacion.getProblems());
-            realizarEjercicio.list_problemas.setItems(datos);
-
-            Stage stage= new Stage();
-            stage.setScene(new Scene(root1));
-            stage.setTitle("Elección de ejercicios");
-            stage.centerOnScreen();
-            stage.setWidth(1000);
-            stage.setHeight(650);
-            stage.getIcons().add(new Image("/resources/icon-96px.png"));
-            stage.show();
-            
-            ((Stage)btn_practica.getScene().getWindow()).close();
-        }
-        catch(Exception e) {System.out.print(e);}
-    }
-
-    @FXML
     private void modPerfil(ActionEvent event) {
         try 
         {
@@ -153,7 +94,39 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void click_verSesiones(MouseEvent event) {
+    private void pulsadoPracticar(ActionEvent event) {
+        try 
+        {
+            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/RealizarEjercicio.fxml"));
+            Parent root1= (Parent)fxmlLoaderMenu.load();
+            RealizarEjercicioController realizarEjercicio = (RealizarEjercicioController) fxmlLoaderMenu.getController();
+            realizarEjercicio.usuario = this.usuario;
+            realizarEjercicio.sesion = this.sesion;
+            realizarEjercicio.navegacion = this.navegacion;
+            realizarEjercicio.aciertos = this.aciertos;
+            realizarEjercicio.fallos = this.fallos;
+            
+            realizarEjercicio.disableButtons();
+             
+            var datos = FXCollections.observableList(navegacion.getProblems());
+            realizarEjercicio.list_problemas.setItems(datos);
+
+            Stage stage= new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Elección de ejercicios");
+            stage.centerOnScreen();
+            stage.setWidth(1000);
+            stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
+            stage.show();
+            
+            ((Stage)btn_practica.getScene().getWindow()).close();
+        }
+        catch(Exception e) {System.out.print(e);}
+    }
+
+    @FXML
+    private void click_verSesiones(ActionEvent event) {
         try 
         {
             FXMLLoader fxmlLoaderMod= new FXMLLoader(getClass().getResource("/vistas/VerSesiones.fxml"));
@@ -174,6 +147,32 @@ public class MenuController implements Initializable {
             stage.show();
             
             ((Stage)btn_verSesiones.getScene().getWindow()).close();
+        }
+        catch(Exception e) {System.out.print(e);}
+    }
+
+    @FXML
+    private void pulsadoVolver(ActionEvent event) {
+        try 
+        {
+            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Login.fxml"));
+            Parent root1= (Parent)fxmlLoaderMenu.load();
+            LoginController login = (LoginController) fxmlLoaderMenu.getController();
+            Stage stage= new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Menu");
+            stage.centerOnScreen();
+            stage.setWidth(1000);
+            stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
+            
+            sesion = new Session(LocalDateTime.now(), aciertos, fallos);
+            usuario.addSession(sesion);
+            usuario = null;
+            
+            stage.show();
+            
+            ((Stage)btn_volver.getScene().getWindow()).close();
         }
         catch(Exception e) {System.out.print(e);}
     }

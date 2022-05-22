@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -76,9 +77,9 @@ public class VerSesionesController implements Initializable {
         datos = FXCollections.observableList(list); 
         tableView_Sesiones.setItems(datos);
     }
-    
+  
     @FXML
-    private void click_volver(MouseEvent event) {
+    private void click_volver(ActionEvent event) {
         try 
         {
             FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Menu.fxml"));

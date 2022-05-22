@@ -56,7 +56,7 @@
       </HBox>
       <HBox fillHeight="false" prefHeight="60.0" prefWidth="600.0" VBox.vgrow="NEVER">
          <children>
-            <Button fx:id="btn_volver" mnemonicParsing="false" onMouseClicked="#click_volver" text="Volver">
+            <Button fx:id="btn_volver" mnemonicParsing="false" onAction="#click_volver" text="Volver">
                <font>
                   <Font size="14.0" />
                </font>

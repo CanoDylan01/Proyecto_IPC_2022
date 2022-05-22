@@ -8,10 +8,12 @@ package controlador;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -64,8 +66,21 @@ public class RealizarEjercicioController implements Initializable {
         //getProblems();
     }    
 
+    public void disableButtons() 
+    {
+        btn_realizarEjercicio.disableProperty().bind(
+                Bindings.equal(-1, list_problemas.getSelectionModel().selectedIndexProperty()));
+    }
+    
+    public void getProblems() 
+    {
+        List<Problem> lista = navegacion.getProblems();
+        datos = FXCollections.observableList(lista);
+        list_problemas.setItems(datos);
+    }
+
     @FXML
-    private void click_volver(MouseEvent event) {
+    private void click_volver(ActionEvent event) {
         try 
         {
             FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/Menu.fxml"));
@@ -93,7 +108,7 @@ public class RealizarEjercicioController implements Initializable {
     }
 
     @FXML
-    private void click_realizarEjercicio(MouseEvent event) {
+    private void click_realizarEjercicio(ActionEvent event) {
         try 
         {
             FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/CartaNautica.fxml"));
@@ -127,20 +142,43 @@ public class RealizarEjercicioController implements Initializable {
     }
 
     @FXML
-    private void click_ejercicioAleatorio(MouseEvent event) {
-    }
-    
-    public void disableButtons() 
-    {
-        btn_realizarEjercicio.disableProperty().bind(
-                Bindings.equal(-1, list_problemas.getSelectionModel().selectedIndexProperty()));
-    }
-    
-    public void getProblems() 
-    {
-        List<Problem> lista = navegacion.getProblems();
-        datos = FXCollections.observableList(lista);
-        list_problemas.setItems(datos);
+    private void click_ejercicioAleatorio(ActionEvent event) {
+        Random r = new Random();
+        int low = 0;
+        int high = list_problemas.getItems().size();
+        int result = r.nextInt(high-low) + low;
+        
+        
+        try 
+        {
+            FXMLLoader fxmlLoaderMenu= new FXMLLoader(getClass().getResource("/vistas/CartaNautica.fxml"));
+            Parent root1= (Parent)fxmlLoaderMenu.load();
+            CartaNauticaController cartaNautica = (CartaNauticaController) fxmlLoaderMenu.getController();
+            
+            cartaNautica.usuario = this.usuario;
+            cartaNautica.sesion = this.sesion;
+            cartaNautica.navegacion = this.navegacion;
+            cartaNautica.aciertos = this.aciertos;
+            cartaNautica.fallos = this.fallos;
+            
+            Problem problema = list_problemas.getSelectionModel().getSelectedItem();
+            cartaNautica.problema = problema;
+            cartaNautica.txt_enunciado.setText(problema.getText());
+            var datos = FXCollections.observableList(problema.getAnswers());
+            cartaNautica.list_answers.setItems(datos); 
+           
+            Stage stage= new Stage();
+            stage.setScene(new Scene(root1));
+            stage.setTitle("Carta Náutica");
+            stage.setWidth(1000);
+            stage.setHeight(650);
+            stage.centerOnScreen();
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
+            stage.show();
+            
+            ((Stage)btn_realizarEjercicio.getScene().getWindow()).close();
+        }
+        catch(Exception e) {System.out.print(e);}
     }
     
 }
