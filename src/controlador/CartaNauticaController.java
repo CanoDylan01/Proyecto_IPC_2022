@@ -16,6 +16,8 @@ import java.util.ResourceBundle;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -36,6 +38,8 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -123,8 +127,8 @@ public class CartaNauticaController implements Initializable {
     @FXML
     private ColorPicker colorPicker;
     @FXML
-    private ChoiceBox<Double> cb_selectorGrosor;
-    public double grosor;
+    private Spinner<Double> spinner;
+    public double grosor = 1;
 
     public enum OpcionCursor {MOVER, LINEA, CIRCULO, TEXTO};
     OpcionCursor cursor = OpcionCursor.MOVER;
@@ -200,6 +204,18 @@ public class CartaNauticaController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         //initData();
+        SpinnerValueFactory<Double> valueFactory = 
+                new SpinnerValueFactory.DoubleSpinnerValueFactory(1,10);
+        valueFactory.setValue(1.0);
+        spinner.setValueFactory(valueFactory);
+        spinner.valueProperty().addListener(new ChangeListener<Double>(){
+
+            @Override
+            public void changed(ObservableValue<? extends Double> arg0, Double arg1, Double arg2) {
+                grosor = spinner.getValue();
+                //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        });
         //==========================================================
         // inicializamos el slider y enlazamos con el zoom
         zoom_slider.setMin(0.2);
@@ -322,7 +338,7 @@ public class CartaNauticaController implements Initializable {
             case LINEA:
                 linePainting = new Line(event.getX(), event.getY(), event.getX(), event.getY());
                 linePainting.setStroke(colorPicker.getValue());
-                //linePainting.setStrokeWidth(chooseGrosor());
+                linePainting.setStrokeWidth(grosor);
                 linePainting.fillProperty();
                 zoomGroup.getChildren().add(linePainting);
                 break;
@@ -330,7 +346,7 @@ public class CartaNauticaController implements Initializable {
             case CIRCULO:
                 circlePainting = new Circle(1);
                 circlePainting.setStroke(colorPicker.getValue());
-                circlePainting.setStrokeWidth(2);
+                circlePainting.setStrokeWidth(grosor);
                 circlePainting.setFill(Color.TRANSPARENT);
                 zoomGroup.getChildren().add(circlePainting);
                 circlePainting.setCenterX(event.getX());
@@ -458,9 +474,8 @@ public class CartaNauticaController implements Initializable {
     {
         //final Double[] grosor = new Double[]{1.0, 2.0,3.0};
         
-        cb_selectorGrosor = new ChoiceBox<>(FXCollections.observableArrayList(
-                1.0, 2.0, 3.0
-        ));
-        return grosor = cb_selectorGrosor.getSelectionModel().getSelectedItem();
+        
+        
+        return spinner.getValue();
     }
 }

@@ -4,7 +4,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -14,6 +13,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
@@ -26,7 +26,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<VBox styleClass="vBox" stylesheets="@../estilos/cartaNautica.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CartaNauticaController">
+<VBox styleClass="vBox" stylesheets="@../estilos/cartaNautica.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CartaNauticaController">
    <children>
       <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="5.0" VBox.vgrow="NEVER">
          <children>
@@ -57,7 +57,7 @@
                         <Color />
                      </value>
                   </ColorPicker>
-                  <ChoiceBox fx:id="cb_selectorGrosor" prefWidth="125.0" />
+                  <Spinner fx:id="spinner" editable="true" prefHeight="30.0" prefWidth="75.0" />
               </items>
                <HBox.margin>
                   <Insets left="20.0" />
