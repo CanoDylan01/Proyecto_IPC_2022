@@ -19,6 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
@@ -83,6 +84,7 @@ public class RealizarEjercicioController implements Initializable {
             stage.centerOnScreen();
             stage.setWidth(1000);
             stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
             
             ((Stage)btn_volver.getScene().getWindow()).close();
@@ -116,6 +118,7 @@ public class RealizarEjercicioController implements Initializable {
             stage.setWidth(1000);
             stage.setHeight(650);
             stage.centerOnScreen();
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
             
             ((Stage)btn_realizarEjercicio.getScene().getWindow()).close();

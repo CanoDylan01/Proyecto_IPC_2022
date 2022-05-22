@@ -37,6 +37,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
@@ -256,6 +257,7 @@ public class CartaNauticaController implements Initializable {
             stage.centerOnScreen();
             stage.setWidth(1000);
             stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
                 
             ((Stage)btn_volver.getScene().getWindow()).close();
@@ -386,6 +388,7 @@ public class CartaNauticaController implements Initializable {
             stage.centerOnScreen();
             stage.setWidth(1000);
             stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
                 
             ((Stage)btn_volver.getScene().getWindow()).close();

@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -72,6 +73,9 @@ public class MenuController implements Initializable {
             stage.setScene(new Scene(root1));
             stage.setTitle("Menu");
             stage.centerOnScreen();
+            stage.setWidth(1000);
+            stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             
             sesion = new Session(LocalDateTime.now(), aciertos, fallos);
             usuario.addSession(sesion);
@@ -109,6 +113,7 @@ public class MenuController implements Initializable {
             stage.centerOnScreen();
             stage.setWidth(1000);
             stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
             
             ((Stage)btn_practica.getScene().getWindow()).close();
@@ -139,6 +144,7 @@ public class MenuController implements Initializable {
             stage.centerOnScreen();
             stage.setWidth(1000);
             stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
             
             ((Stage)btn_Modificar.getScene().getWindow()).close();
@@ -164,6 +170,7 @@ public class MenuController implements Initializable {
             stage.centerOnScreen();
             stage.setWidth(1000);
             stage.setHeight(650);
+            stage.getIcons().add(new Image("/resources/icon-96px.png"));
             stage.show();
             
             ((Stage)btn_verSesiones.getScene().getWindow()).close();
