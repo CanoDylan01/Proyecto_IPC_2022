@@ -10,9 +10,11 @@ import com.sun.glass.ui.Cursor;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -33,6 +35,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -45,6 +48,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
@@ -115,7 +119,6 @@ public class CartaNauticaController implements Initializable {
     
     Line linePainting;    
     
-    @FXML
     Circle circlePainting;
     double inicioXArc;
     
@@ -135,6 +138,8 @@ public class CartaNauticaController implements Initializable {
     public double grosor = 1;
     @FXML
     private MenuItem menuItem_borrar;
+    @FXML
+    private Pane pane_transportador;
 
 
     public enum OpcionCursor {MOVER, LINEA, CIRCULO, TEXTO};
@@ -197,7 +202,7 @@ public class CartaNauticaController implements Initializable {
         //map_pin.setLayoutX(itemSelected.getPosition().getX());
         //map_pin.setLayoutY(itemSelected.getPosition().getY());
         //pin_info.setText(itemSelected.getDescription());
-        map_pin.setVisible(true);
+        map_pin.setVisible(false);
     }
 
     private void initData() {
@@ -223,6 +228,8 @@ public class CartaNauticaController implements Initializable {
                 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
             }
         });
+        
+        list_answers.setCellFactory(c -> new AnswerListCell());
         //==========================================================
         // inicializamos el slider y enlazamos con el zoom
         zoom_slider.setMin(0.2);
@@ -258,6 +265,7 @@ public class CartaNauticaController implements Initializable {
         Alert mensaje= new Alert(Alert.AlertType.INFORMATION);
         mensaje.setTitle("Acerca de");
         mensaje.setHeaderText(usuario.getNickName());
+        mensaje.setContentText("Llevas " + aciertos + " aciertos y " + fallos + " fallos en la sesión actual."  ); 
         mensaje.showAndWait();
     }
 
@@ -377,7 +385,18 @@ public class CartaNauticaController implements Initializable {
                 zoomGroup.getChildren().add(circlePainting);
                 circlePainting.setCenterX(event.getX());
                 circlePainting.setCenterY(event.getY());
-                inicioXArc = event.getX();               
+                inicioXArc = event.getX();
+                circlePainting.setOnContextMenuRequested(e -> {
+                    ContextMenu menuContext = new ContextMenu();
+                    MenuItem borrarItem = new MenuItem("Eliminar");
+                    menuContext.getItems().add(borrarItem);
+                    borrarItem.setOnAction(ev -> {
+                        zoomGroup.getChildren().remove((Node)e.getSource());
+                        ev.consume();
+                    });
+                    menuContext.show(circlePainting, event.getX(), event.getY());
+                    e.consume();
+                });              
                 break;
                 
             case TEXTO:
@@ -396,6 +415,7 @@ public class CartaNauticaController implements Initializable {
                     zoomGroup.getChildren().remove(textoPainting);
                     e.consume();
                 });
+                
                 break;  
         }
     }
@@ -481,14 +501,14 @@ public class CartaNauticaController implements Initializable {
             ++fallos;
             
             alert.showAndWait();
+            
+            
         }
     }
     
     @FXML
     private void borrarDibujo(ActionEvent event) {
-        zoomGroup.getChildren().remove(linePainting);
-        zoomGroup.getChildren().remove(circlePainting);
-        zoomGroup.getChildren().remove(textoPainting);
+        zoomGroup.getChildren().removeAll();
     }
     
     private void registerSession() throws NavegacionDAOException 
@@ -501,5 +521,15 @@ public class CartaNauticaController implements Initializable {
             aciertos = 0;
             fallos = 0;
         }   
+    }
+    
+    class AnswerListCell extends ListCell<Answer>
+    {
+    @Override
+    protected void updateItem(Answer item, boolean empty)
+    { super.updateItem(item, empty); // Obligatoria esta llamada
+    if (item==null || empty) setText(null);
+    else setText(item.getText());
+    }
     }
 }

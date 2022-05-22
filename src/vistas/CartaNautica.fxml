@@ -23,10 +23,9 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-<VBox stylesheets="@../estilos/realizarejercicio.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CartaNauticaController">
+<VBox stylesheets="@../estilos/realizarejercicio.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.CartaNauticaController">
    <children>
       <HBox alignment="CENTER_RIGHT" fillHeight="false" spacing="5.0" VBox.vgrow="NEVER">
          <children>
@@ -102,12 +101,15 @@
                               <String fx:value="map-pin" />
                            </styleClass>
                         </MenuButton>
-                        <ImageView fx:id="transportador" fitHeight="448.0" fitWidth="516.0" layoutX="164.0" layoutY="178.0" onMouseDragged="#translacion" onMousePressed="#inicioTranslacion" onMouseReleased="#finTraslacion" opacity="0.5" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../resources/transportador.png" />
-                           </image>
-                        </ImageView>
-                        <Circle fx:id="circlePainting" fill="WHITE" layoutX="60.0" layoutY="56.0" radius="26.0" stroke="BLACK" strokeType="INSIDE" />
+                        <Pane fx:id="pane_transportador" prefHeight="390.0" prefWidth="439.0">
+                           <children>
+                              <ImageView fx:id="transportador" fitHeight="448.0" fitWidth="516.0" onMouseDragged="#translacion" onMousePressed="#inicioTranslacion" onMouseReleased="#finTraslacion" opacity="0.5" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/transportador.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </Pane>
                      </children>
                   </Pane>
                </content>
