@@ -76,6 +76,7 @@ public class MenuController implements Initializable {
             sesion = new Session(LocalDateTime.now(), aciertos, fallos);
             usuario.addSession(sesion);
             usuario = null;
+            
             stage.show();
             
             ((Stage)btn_volver.getScene().getWindow()).close();
