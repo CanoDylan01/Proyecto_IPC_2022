@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VerSesionesController">
+<VBox prefHeight="400.0" prefWidth="600.0" stylesheets="@../estilos/login.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.VerSesionesController">
    <children>
       <HBox prefHeight="35.0" prefWidth="600.0" VBox.vgrow="NEVER">
          <children>

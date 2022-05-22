@@ -6,46 +6,45 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<HBox prefHeight="400.0" prefWidth="600.0" styleClass="hBox" stylesheets="@../estilos/menu.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MenuController">
+<HBox prefHeight="400.0" prefWidth="600.0" styleClass="hBox" stylesheets="@../estilos/login.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.MenuController">
    <children>
-      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES" />
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="455.0" HBox.hgrow="NEVER">
          <children>
-            <Button fx:id="btn_practica" mnemonicParsing="false" onMouseClicked="#pulsadoPracticar" prefHeight="42.0" prefWidth="135.0" styleClass="mainFxmlClass" stylesheets="@../estilos/menu.css" text="Practicar">
+            <Button fx:id="btn_practica" mnemonicParsing="false" onMouseClicked="#pulsadoPracticar" prefHeight="42.0" prefWidth="150.0" text="Practicar">
                <font>
                   <Font size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="25.0" />
+                  <Insets bottom="35.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btn_verSesiones" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#click_verSesiones" prefHeight="42.0" prefWidth="135.0" styleClass="mainFxmlClass" stylesheets="@../estilos/menu.css" text="Ver Sesiones">
+            <Button fx:id="btn_verSesiones" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#click_verSesiones" prefHeight="42.0" prefWidth="150.0" text="Ver Sesiones">
                <font>
                   <Font size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="25.0" />
+                  <Insets bottom="35.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btn_Modificar" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#modPerfil" prefHeight="42.0" prefWidth="135.0" styleClass="mainFxmlClass" stylesheets="@../estilos/menu.css" text=" Modificar Perfil">
+            <Button fx:id="btn_Modificar" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#modPerfil" prefHeight="42.0" prefWidth="150.0" text=" Modificar Perfil">
                <font>
                   <Font size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="25.0" />
+                  <Insets bottom="35.0" />
                </VBox.margin>
             </Button>
-            <Button fx:id="btn_volver" mnemonicParsing="false" onMouseClicked="#pulsadoVolver" prefHeight="42.0" prefWidth="135.0" styleClass="mainFxmlClass" stylesheets="@../estilos/menu.css" text="Cerrar Sesión">
+            <Button fx:id="btn_volver" mnemonicParsing="false" onMouseClicked="#pulsadoVolver" prefHeight="42.0" prefWidth="150.0" text="Cerrar Sesión">
                <font>
                   <Font size="18.0" />
                </font>
                <VBox.margin>
-                  <Insets bottom="25.0" />
+                  <Insets bottom="35.0" />
                </VBox.margin>
             </Button>
          </children>
       </VBox>
-      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="SOMETIMES" />
+      <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
    </children>
 </HBox>

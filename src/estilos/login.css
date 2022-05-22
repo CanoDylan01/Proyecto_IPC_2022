@@ -15,7 +15,7 @@
 .root {
     -fx-background-image: url(../resources/fondo.jpg);
     -fx-background-repeat: no-repeat;
-    -fx-background-size: cover;
+    -fx-background-size: 100% 100%;
 }
 .label{
     -fx-text-fill: black;
@@ -26,4 +26,34 @@
 }
 .myLink {
     -fx-text-fill: black;
+}
+.table-cell {     
+    -fx-padding: 0.5em 0.5em 0.1em 0.3em;
+    -fx-border-color: rgba(220, 220, 220, 0.4);  
+    -fx-font: 13px "Segoe UI";    
+    -fx-border-insets: 0;
+}
+.table-row-cell:empty, .table-cell:empty:hover {
+    -fx-background-color: rgba(0,0,0,0);
+}
+.table-row-cell:empty .table-cell {
+    -fx-border-width: 0px;
+}
+.table-view:row-selection .table-row-cell:filled:hover { 
+    -fx-background-color: rgba(28, 183, 236, 0.25);
+}
+.table-view:row-selection .table-row-cell:filled:selected:hover { 
+    -fx-background-color: rgba(23, 77, 226, 0.80);
+}
+.table-view, .table-view:focused {
+  -fx-background-color: transparent,-fx-box-border,-fx-control-inner-background;
+  -fx-background-insets: -1.4, 0, 1;
+  -fx-background-radius: 1.4, 0, 0;
+}
+.table-view .column-header .label{
+    -fx-text-fill: #52677A;
+    -fx-alignment: CENTER;
+}
+.table-view .column-header-background {
+    -fx-background-color: transparent;
 }
