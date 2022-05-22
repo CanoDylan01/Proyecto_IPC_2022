@@ -131,7 +131,6 @@ public class CartaNauticaController implements Initializable {
     public int aciertos;
     public int fallos;
 
-
     @FXML
     void zoomIn(ActionEvent event) {
         //================================================
