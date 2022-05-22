@@ -21,6 +21,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
+import model.Answer;
 import model.Navegacion;
 import model.Problem;
 import model.Session;
@@ -106,8 +108,7 @@ public class RealizarEjercicioController implements Initializable {
             cartaNautica.problema = problema;
             cartaNautica.txt_enunciado.setText(problema.getText());
             var datos = FXCollections.observableList(problema.getAnswers());
-            cartaNautica.list_answers.setItems(datos);
-            
+            cartaNautica.list_answers.setItems(datos); 
            
             Stage stage= new Stage();
             stage.setScene(new Scene(root1));
