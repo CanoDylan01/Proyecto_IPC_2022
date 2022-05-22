@@ -47,6 +47,8 @@ import javafx.scene.input.ContextMenuEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
@@ -117,6 +119,8 @@ public class CartaNauticaController implements Initializable {
     Circle circlePainting;
     double inicioXArc;
     
+    Arc arcPainting;
+    
     TextField textoPainting;
     @FXML
     public Text txt_enunciado;
@@ -129,6 +133,9 @@ public class CartaNauticaController implements Initializable {
     @FXML
     private Spinner<Double> spinner;
     public double grosor = 1;
+    @FXML
+    private MenuItem menuItem_borrar;
+
 
     public enum OpcionCursor {MOVER, LINEA, CIRCULO, TEXTO};
     OpcionCursor cursor = OpcionCursor.MOVER;
@@ -341,13 +348,32 @@ public class CartaNauticaController implements Initializable {
                 linePainting.setStrokeWidth(grosor);
                 linePainting.fillProperty();
                 zoomGroup.getChildren().add(linePainting);
+                
+                linePainting.setOnContextMenuRequested(e -> {
+                    ContextMenu menuContext = new ContextMenu();
+                    MenuItem borrarItem = new MenuItem("Eliminar");
+                    menuContext.getItems().add(borrarItem);
+                    borrarItem.setOnAction(ev -> {
+                        zoomGroup.getChildren().remove((Node)e.getSource());
+                        ev.consume();
+                    });
+                    menuContext.show(linePainting, event.getX(), event.getY());
+                    e.consume();
+                });
                 break;
                 
             case CIRCULO:
+                //arcPainting = new Arc();
+                //arcPainting.setStroke(colorPicker.getValue());
+                //arcPainting.setStrokeWidth(grosor);
+                //arcPainting.setFill(Color.TRANSPARENT);
+                //arcPainting.setType(ArcType.OPEN);
+                
                 circlePainting = new Circle(1);
                 circlePainting.setStroke(colorPicker.getValue());
                 circlePainting.setStrokeWidth(grosor);
                 circlePainting.setFill(Color.TRANSPARENT);
+                
                 zoomGroup.getChildren().add(circlePainting);
                 circlePainting.setCenterX(event.getX());
                 circlePainting.setCenterY(event.getY());
@@ -365,7 +391,7 @@ public class CartaNauticaController implements Initializable {
                     textoT.setX(textoPainting.getLayoutX());
                     textoT.setY(textoPainting.getLayoutY());
                     textoT.setStyle("-fx-font-family: Gafata; -fx-font-size: 40;");
-                    textoT.setStroke(colorPicker.getValue());
+                    textoT.setFill(colorPicker.getValue());
                     zoomGroup.getChildren().add(textoT);
                     zoomGroup.getChildren().remove(textoPainting);
                     e.consume();
@@ -458,6 +484,13 @@ public class CartaNauticaController implements Initializable {
         }
     }
     
+    @FXML
+    private void borrarDibujo(ActionEvent event) {
+        zoomGroup.getChildren().remove(linePainting);
+        zoomGroup.getChildren().remove(circlePainting);
+        zoomGroup.getChildren().remove(textoPainting);
+    }
+    
     private void registerSession() throws NavegacionDAOException 
     {
         if(aciertos != 0 || fallos != 0) 
@@ -468,14 +501,5 @@ public class CartaNauticaController implements Initializable {
             aciertos = 0;
             fallos = 0;
         }   
-    }
-    
-    private double chooseGrosor() 
-    {
-        //final Double[] grosor = new Double[]{1.0, 2.0,3.0};
-        
-        
-        
-        return spinner.getValue();
     }
 }
